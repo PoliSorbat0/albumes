@@ -106,3 +106,43 @@ body {
     color: #e0e0e0 !important;
     text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
 }
+
+/* Botones de Login y Registro */
+
+.auth-buttons {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    text-decoration: none;
+    font-family: system-ui, -apple-system, sans-serif;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: #1877f2 !important;
+    border-color: #1877f2 !important;
+    color: #ffffff !important;
+}
+
+.btn-primary:hover {
+    background-color: #166fe5 !important;
+    border-color: #166fe5 !important;
+}
+.btn-secondary {
+    background-color: #e4e6eb !important;
+    border-color: #e4e6eb !important;
+    color: #050505 !important;
+}
+
+.btn-secondary:hover {
+    background-color: #d8dadf !important;
+    border-color: #d8dadf !important;
+}
