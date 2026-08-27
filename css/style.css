@@ -127,14 +127,14 @@ body {
 }
 
 .btn-primary {
-    background-color: #1877f2 !important;
-    border-color: #1877f2 !important;
+    background-color: #331853 !important;
+    border-color: #331853 !important;
     color: #ffffff !important;
 }
 
 .btn-primary:hover {
-    background-color: #166fe5 !important;
-    border-color: #166fe5 !important;
+    background-color: #580770 !important;
+    border-color: #580770 !important;
 }
 .btn-secondary {
     background-color: #e4e6eb !important;
