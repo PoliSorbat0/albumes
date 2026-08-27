@@ -4,81 +4,114 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio</title>
+    <link rel="stylesheet" href="css/style.css">  
+
+    <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <style>
-        /* Mantiene todas las imágenes del carrusel con la misma altura proporcional */
-        .carousel-item img {
-            height: 350px;
-            object-fit: cover;
-        }
-    </style>
+    <!-- íconos de la barra (tarjeta, camión, regalo, estrella) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
 </head>
+
 <body>
 
-  <!-- barar de navegación-->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Tienda Álbumes</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" href="index.html">Inicio</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Inicio de sesión
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <li><a class="dropdown-item" href="iniciar_sesion.html">Ya tengo cuenta</a></li>
-              <li><a class="dropdown-item" href="registro.html">Registrarme</a></li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="productos.html">Productos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="detalle_producto.html">Detalle de Producto</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="carrito.html">Carrito de Compras</a>
-          </li> 
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAbout" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              ¡Sobre Nosotros!
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdownAbout">
-              <li><a class="dropdown-item" href="Lore.html">Nuestra Historia</a></li>
-              <li><a class="dropdown-item" href="contacto.html">Contáctanos</a></li>
-            </ul>
-          </li>
-        </ul>
+  <!-- BARRA SUPERIOR DE ANUNCIOS (MARQUEE) -->
+  <div class="m-0 rounded-0 text-center alert alert-dismissible fade show pm-marquee-wrap" role="alert">
+    <div class="pm-marquee">
+
+
+      <div class="pm-marquee-track" aria-label="Beneficios de la tienda">
+        <!-- Set 1 -->
+        <span class="pm-item"><i class="fas fa-credit-card pm-ico"></i>PAGA HASTA 6 CUOTAS SIN INTERÉS PAPITO!</span>
+        <span class="pm-item"><i class="fas fa-gift pm-ico"></i>5% DCTO EXTRA NUEVOS CLIENTES</span>
+        <span class="pm-item"><i class="fas fa-credit-card pm-ico"></i>PAGA HASTA 6 CUOTAS SIN INTERÉS PAPITO!</span>
+        <span class="pm-item"><i class="fas fa-gift pm-ico"></i>5% DCTO EXTRA NUEVOS CLIENTES</span>
+
+        <!-- Set 2 (Duplicado para continuidad de la animación) -->
+        <span class="pm-item"><i class="fas fa-credit-card pm-ico"></i>PAGA HASTA 6 CUOTAS SIN INTERÉS PAPITO!</span>
+        <span class="pm-item"><i class="fas fa-gift pm-ico"></i>5% DCTO EXTRA NUEVOS CLIENTES</span>
+        <span class="pm-item"><i class="fas fa-credit-card pm-ico"></i>PAGA HASTA 6 CUOTAS SIN INTERÉS PAPITO!</span>
+        <span class="pm-item"><i class="fas fa-gift pm-ico"></i>5% DCTO EXTRA NUEVOS CLIENTES</span>
       </div>
     </div>
-  </nav>
+    
+    <!-- Botón para cerrar la alerta -->
+    <button type="button" class="btn-close btn-close-white me-2" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
 
-  <!-- CONTENIDO PRINCIPAL Y CARRUSEL CENTRADO -->
-  <main class="container my-5 text-center">
-    <h1 class="mb-3">Catálogo de Álbumes</h1>
-    <p class="text-muted mb-4">Página dedicada a mostrar álbumes destacando los mejores lanzamientos.</p>
 
-    <!-- Contenedor que reduce y centra el carrusel -->
+<!-- NAVBAR OSCURA -->
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom shadow-sm">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold" href="#">Tienda Álbumes</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" href="index.html">Inicio</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Inicio de sesión
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="iniciar_sesion.html">Ya tengo cuenta</a></li>
+            <li><a class="dropdown-item" href="registro.html">Registrarme</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="productos.html">Productos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="detalle_producto.html">Detalle de Producto</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="carrito.html">Carrito de Compras</a>
+        </li> 
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAbout" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            ¡Sobre Nosotros!
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownAbout">
+            <li><a class="dropdown-item" href="Lore.html">Nuestra Historia</a></li>
+            <li><a class="dropdown-item" href="contacto.html">Contáctanos</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- CONTENIDO PRINCIPAL CON TEXTOS LEGIBLES -->
+<main class="container my-5 text-center">
+  <h1 class="mb-3 titulo-principal display-4">Catálogo de Álbumes</h1>
+  <p class="subtitulo-principal fs-5 mb-4">Página dedicada a mostrar álbumes destacando los mejores lanzamientos.</p>
+
+  <!-- CARRUSEL -->
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+      <div id="carruselAlbumes" class="carousel slide shadow-lg rounded-4 overflow-hidden border border-secondary" data-bs-ride="carousel">
+        <!-- Contenido del carrusel aquí -->
+      </div>
+    </div>
+  </div>
+</main>
+
+    <!-- CARRUSEL CENTRADO -->
     <div class="row justify-content-center">
       <div class="col-12 col-md-8 col-lg-6">
         
         <div id="carruselAlbumes" class="carousel slide shadow rounded overflow-hidden" data-bs-ride="carousel">
           
-          <!-- Indicadores (puntos de navegación) -->
           <div class="carousel-indicators">
             <button type="button" data-bs-target="#carruselAlbumes" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#carruselAlbumes" data-bs-slide-to="1" aria-label="Slide 2"></button>
             <button type="button" data-bs-target="#carruselAlbumes" data-bs-slide-to="2" aria-label="Slide 3"></button>
           </div>
 
-          <!-- Diapositivas (Imágenes) -->
           <div class="carousel-inner">
             <div class="carousel-item active">
               <img src="https://via.placeholder.com/600x350/222222/FFFFFF?text=Album+1" class="d-block w-100" alt="Álbum 1">
@@ -103,7 +136,6 @@
             </div>
           </div>
 
-          <!-- Controles Anterior / Siguiente -->
           <button class="carousel-control-prev" type="button" data-bs-target="#carruselAlbumes" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Anterior</span>
