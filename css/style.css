@@ -1,1 +1,108 @@
+ /* ESTILOS DE LA BARRA SUPERIOR (MARQUEE) */
+.pm-marquee-wrap {
+    background-color: #2b2055 !important; /* El morado/oscuro de tu imagen */
+    color: #ffffff !important;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    padding: 10px 0;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: none;
+}
 
+/* Fuerza el color blanco en todos los textos e íconos dentro de la barra */
+.pm-marquee-wrap *,
+.pm-marquee-wrap i,
+.pm-item {
+    color: #ffffff !important;
+}
+
+.pm-marquee {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    overflow: hidden;
+}
+
+.pm-marquee-track {
+    display: flex;
+    gap: 3rem;
+    animation: marquee 18s linear infinite;
+    will-change: transform;
+}
+
+.pm-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pm-ico {
+    font-size: 1rem;
+}
+
+/* Animación del texto en movimiento */
+@keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+}
+/* FONDO GENERAL PARA LA PÁGINA */
+body {
+    background-image:
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url('../imagenes/FondoTienda.png'); /* Usa ../ y la extensión .png */
+         /* Degradado negro semitransparente */
+    background-repeat: repeat;               
+    background-position: center top;
+    background-attachment: fixed;            
+    color: #ffffff;                          
+}
+/* ESTILOS DE LA BARRA DE NAVEGACIÓN (NAVBAR OSCURA) */
+.navbar-custom {
+    background-color: #1a1235 !important; /* Morado aún más oscuro para dar contraste */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navbar-custom .navbar-brand,
+.navbar-custom .nav-link {
+    color: #ffffff !important; /* Texto del menú en blanco */
+    font-weight: 500;
+}
+
+.navbar-custom .nav-link:hover,
+.navbar-custom .nav-link.active {
+    color: #ff8c00 !important; /* Tono naranja llamativo al pasar el mouse */
+}
+
+/* Cambiar el ícono del menú hamburguesa (móvil) a blanco */
+.navbar-custom .navbar-toggler-icon {
+    filter: invert(1);
+}
+
+/* MENÚ DESPLEGABLE OSCURO */
+.navbar-custom .dropdown-menu {
+    background-color: #2b2055;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.navbar-custom .dropdown-item {
+    color: #ffffff;
+}
+
+.navbar-custom .dropdown-item:hover {
+    background-color: #3b2d6b;
+    color: #ff8c00;
+}
+
+/* TEXTOS PRINCIPALES CON SOMBRA PARA RESALTAR SOBRE EL FONDO */
+.titulo-principal {
+    color: #ffffff !important;
+    font-weight: 800;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+.subtitulo-principal {
+    color: #e0e0e0 !important;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
+}
