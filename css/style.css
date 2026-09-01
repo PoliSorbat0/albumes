@@ -1,6 +1,6 @@
- /* ESTILOS DE LA BARRA SUPERIOR (MARQUEE) */
+/* ESTILOS DE LA BARRA SUPERIOR (MARQUEE) */
 .pm-marquee-wrap {
-    background-color: #2b2055 !important; /* El morado/oscuro de tu imagen */
+    background-color: #2b2055 !important;
     color: #ffffff !important;
     overflow: hidden;
     white-space: nowrap;
@@ -11,7 +11,6 @@
     border: none;
 }
 
-/* Fuerza el color blanco en todos los textos e íconos dentro de la barra */
 .pm-marquee-wrap *,
 .pm-marquee-wrap i,
 .pm-item {
@@ -42,45 +41,43 @@
     font-size: 1rem;
 }
 
-/* Animación del texto en movimiento */
 @keyframes marquee {
     0% { transform: translateX(0%); }
     100% { transform: translateX(-50%); }
 }
+
 /* FONDO GENERAL PARA LA PÁGINA */
 body {
     background-image:
         linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-        url('../imagenes/FondoTienda.png'); /* Usa ../ y la extensión .png */
-         /* Degradado negro semitransparente */
-    background-repeat: repeat;               
+        url('../imagenes/FondoTienda.png');
+    background-repeat: repeat;              
     background-position: center top;
-    background-attachment: fixed;            
-    color: #ffffff;                          
+    background-attachment: fixed;           
+    color: #ffffff;                         
 }
-/* ESTILOS DE LA BARRA DE NAVEGACIÓN (NAVBAR OSCURA) */
+
+/* ESTILOS DE LA BARRA DE NAVEGACIÓN */
 .navbar-custom {
-    background-color: #1a1235 !important; /* Morado aún más oscuro para dar contraste */
+    background-color: #1a1235 !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .navbar-custom .navbar-brand,
 .navbar-custom .nav-link {
-    color: #ffffff !important; /* Texto del menú en blanco */
+    color: #ffffff !important;
     font-weight: 500;
 }
 
 .navbar-custom .nav-link:hover,
 .navbar-custom .nav-link.active {
-    color: #ff8c00 !important; /* Tono naranja llamativo al pasar el mouse */
+    color: #ff8c00 !important;
 }
 
-/* Cambiar el ícono del menú hamburguesa (móvil) a blanco */
 .navbar-custom .navbar-toggler-icon {
     filter: invert(1);
 }
 
-/* MENÚ DESPLEGABLE OSCURO */
 .navbar-custom .dropdown-menu {
     background-color: #2b2055;
     border: 1px solid rgba(255, 255, 255, 0.15);
@@ -95,7 +92,6 @@ body {
     color: #ff8c00;
 }
 
-/* TEXTOS PRINCIPALES CON SOMBRA PARA RESALTAR SOBRE EL FONDO */
 .titulo-principal {
     color: #ffffff !important;
     font-weight: 800;
@@ -106,8 +102,6 @@ body {
     color: #e0e0e0 !important;
     text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
 }
-
-/* Botones de Login y Registro */
 
 .auth-buttons {
     display: flex;
@@ -136,6 +130,7 @@ body {
     background-color: #580770 !important;
     border-color: #580770 !important;
 }
+
 .btn-secondary {
     background-color: #e4e6eb !important;
     border-color: #e4e6eb !important;
@@ -145,4 +140,137 @@ body {
 .btn-secondary:hover {
     background-color: #d8dadf !important;
     border-color: #d8dadf !important;
+}
+
+/* --- CARRITO DE COMPRAS FLOTANTE --- */
+
+.floating-cart-container {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 1050; /* Por encima de elementos de Bootstrap */
+  font-family: sans-serif;
+}
+
+.cart-btn {
+  background-color: #8d05b6;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+/* Color del carrito cuando se pasa el cursor por encima */
+.cart-btn:hover {
+  background-color: rgb(248, 27, 230);
+  transform: scale(1.15);
+}
+/* Color de la notificaciones que saldrán sobre el carrito */
+.badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background-color: #ff0000;
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 3px 7px;
+  border-radius: 50%;
+}
+
+.cart-popup {
+  position: absolute;
+  bottom: 75px; 
+  right: 0px;
+  width: 300px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform-origin: bottom left;
+}
+
+.cart-popup.hidden {
+  display: none !important;
+  opacity: 0;
+  transform: scale(0.9);
+  pointer-events: none;
+}
+
+.cart-header {
+  background-color: #f8fafc;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.cart-header h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #1e293b;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: #64748b;
+}
+
+.cart-body {
+  padding: 15px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #475569;
+}
+
+.cart-footer {
+  padding: 15px;
+  background-color: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+}
+
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: #1e293b;
+}
+
+.checkout-btn {
+  width: 100%;
+  background-color: #10b981;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.checkout-btn:hover {
+  background-color: #059669;
 }
