@@ -1,9 +1,11 @@
-/* ESTILOS DE LA BARRA SUPERIOR (MARQUEE) */
+/* ==========================================
+   1. ESTILOS DE LA BARRA SUPERIOR (MARQUEE)
+   ========================================== */
 .pm-marquee-wrap {
-    background-color: #2b2055 !important;
+    background-color: #2b2055 !important; /* Fondo morado oscuro de la barra de anuncios */
     color: #ffffff !important;
-    overflow: hidden;
-    white-space: nowrap;
+    overflow: hidden; /* Oculta el texto que sobresale para lograr el efecto infinito */
+    white-space: nowrap; /* Evita que el texto salte de línea */
     position: relative;
     padding: 10px 0;
     font-size: 0.85rem;
@@ -11,6 +13,7 @@
     border: none;
 }
 
+/* Aplica color blanco a todos los íconos y elementos dentro del marquee */
 .pm-marquee-wrap *,
 .pm-marquee-wrap i,
 .pm-item {
@@ -24,10 +27,11 @@
     overflow: hidden;
 }
 
+/* Pista que contiene el texto desplazable */
 .pm-marquee-track {
     display: flex;
     gap: 3rem;
-    animation: marquee 18s linear infinite;
+    animation: marquee 18s linear infinite; /* Animación continua de 18 segundos */
     will-change: transform;
 }
 
@@ -41,42 +45,43 @@
     font-size: 1rem;
 }
 
+/* Keyframes para mover la barra continuamente de derecha a izquierda */
 @keyframes marquee {
     0% { transform: translateX(0%); }
     100% { transform: translateX(-50%); }
 }
 
-/* FONDO GENERAL PARA LA PÁGINA */
+/* ==========================================
+   2. FONDO GENERAL Y DE PÁGINAS ESPECÍFICAS
+   ========================================== */
+/* Fondo global para el sitio principal */
 body {
     background-image:
-        linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-        url('../imagenes/FondoTienda.png');
-    background-repeat: repeat;              
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), /* Capa oscura para legibilidad */
+        url('../imagenes/FondoTienda.png'); /* Ruta relativa desde css/ hasta imagenes/ */
+    background-repeat: repeat; 
     background-position: center top;
-    background-attachment: fixed;           
-    color: #ffffff;                         
+    background-attachment: fixed; /* Mantiene el fondo estático al hacer scroll */
+    color: #ffffff; 
 }
 
-
-/* FONDO PARA LA PAGINA ABOUT US (CORREGIR ESTO PORQUE ME CAMBIA TODO EL FONDO LOLXD)
-body {
+/* Clase para corregir el fondo en la página "Sobre Nosotros" sin romper las demás */
+body.body-lore {
     background-image:
         linear-gradient(to bottom, rgba(56, 0, 121, 0.7), rgba(65, 8, 119, 0.7)),
         url('../imagenes/us.jpg');
-    
-    background-repeat: no-repeat;     
-    background-size: cover;           
-
+    background-repeat: no-repeat;
+    background-size: cover;
     background-position: center top;
     background-attachment: fixed;
-    color: #ffffff;
-    
-    min-height: 100vh; 
-} */
+    min-height: 100vh;
+}
 
-/* ESTILOS DE LA BARRA DE NAVEGACIÓN */
+/* ==========================================
+   3. BARRA DE NAVEGACIÓN (NAVBAR)
+   ========================================== */
 .navbar-custom {
-    background-color: #1a1235 !important;
+    background-color: #1a1235 !important; /* Morado oscuro con contraste */
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -86,15 +91,18 @@ body {
     font-weight: 500;
 }
 
+/* Efecto hover y estado activo de la navegación */
 .navbar-custom .nav-link:hover,
 .navbar-custom .nav-link.active {
-    color: #ff8c00 !important;
+    color: #ff8c00 !important; /* Resaltado naranja */
 }
 
+/* Invierte el color del botón hamburguesa para pantallas móviles */
 .navbar-custom .navbar-toggler-icon {
     filter: invert(1);
 }
 
+/* Estilos para el menú desplegable */
 .navbar-custom .dropdown-menu {
     background-color: #2b2055;
     border: 1px solid rgba(255, 255, 255, 0.15);
@@ -109,6 +117,9 @@ body {
     color: #ff8c00;
 }
 
+/* ==========================================
+   4. TIPOGRAFÍA Y BOTONES
+   ========================================== */
 .titulo-principal {
     color: #ffffff !important;
     font-weight: 800;
@@ -159,135 +170,137 @@ body {
     border-color: #d8dadf !important;
 }
 
-/* --- CARRITO DE COMPRAS FLOTANTE --- */
-
+/* ==========================================
+   5. CARRITO DE COMPRAS FLOTANTE
+   ========================================== */
 .floating-cart-container {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  z-index: 1050; /* Por encima de elementos de Bootstrap */
-  font-family: sans-serif;
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 1050; /* Superpone el carrito por encima de modales o headers de Bootstrap */
+    font-family: sans-serif;
 }
 
 .cart-btn {
-  background-color: #8d05b6;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  font-size: 24px;
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  transition: transform 0.2s ease, background-color 0.2s ease;
-}
-/* Color del carrito cuando se pasa el cursor por encima */
-.cart-btn:hover {
-  background-color: rgb(248, 27, 230);
-  transform: scale(1.15);
-}
-/* Color de la notificaciones que saldrán sobre el carrito */
-.badge {
-  position: absolute;
-  top: 2px;
-  right: 2px;
-  background-color: #ff0000;
-  color: white;
-  font-size: 11px;
-  font-weight: bold;
-  padding: 3px 7px;
-  border-radius: 50%;
+    background-color: #8d05b6;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
+.cart-btn:hover {
+    background-color: rgb(248, 27, 230);
+    transform: scale(1.15);
+}
+
+/* Badge del contador de productos */
+.badge {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background-color: #ff0000;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 3px 7px;
+    border-radius: 50%;
+}
+
+/* Pop-up emergente del carrito */
 .cart-popup {
-  position: absolute;
-  bottom: 75px; 
-  right: 0px;
-  width: 300px;
-  background-color: white;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  transform-origin: bottom left;
+    position: absolute;
+    bottom: 75px; 
+    right: 0px;
+    width: 300px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .cart-popup.hidden {
-  display: none !important;
-  opacity: 0;
-  transform: scale(0.9);
-  pointer-events: none;
+    display: none !important;
+    opacity: 0;
+    transform: scale(0.9);
+    pointer-events: none;
 }
 
 .cart-header {
-  background-color: #f8fafc;
-  padding: 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #e2e8f0;
+    background-color: #f8fafc;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e2e8f0;
 }
 
 .cart-header h3 {
-  margin: 0;
-  font-size: 16px;
-  color: #1e293b;
+    margin: 0;
+    font-size: 16px;
+    color: #1e293b;
 }
 
 .close-btn {
-  background: none;
-  border: none;
-  font-size: 22px;
-  cursor: pointer;
-  color: #64748b;
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: #64748b;
 }
 
 .cart-body {
-  padding: 15px;
-  max-height: 200px;
-  overflow-y: auto;
+    padding: 15px;
+    max-height: 200px;
+    overflow-y: auto;
 }
 
 .cart-item {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  font-size: 14px;
-  color: #475569;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #475569;
 }
 
 .cart-footer {
-  padding: 15px;
-  background-color: #f8fafc;
-  border-top: 1px solid #e2e8f0;
+    padding: 15px;
+    background-color: #f8fafc;
+    border-top: 1px solid #e2e8f0;
 }
 
 .cart-total {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 12px;
-  font-size: 14px;
-  color: #1e293b;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 14px;
+    color: #1e293b;
 }
 
 .checkout-btn {
-  width: 100%;
-  background-color: #10b981;
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 6px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
+    width: 100%;
+    background-color: #10b981;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
 .checkout-btn:hover {
-  background-color: #059669;
+    background-color: #059669;
 }
