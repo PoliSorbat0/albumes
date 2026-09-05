@@ -25,7 +25,7 @@
         <span class="pm-item"><i class="fas fa-gift pm-ico"></i>5% DCTO EXTRA NUEVOS CLIENTES</span>
         <span class="pm-item"><i class="fas fa-truck pm-ico"></i>ENVÍOS A TODO CHILE</span>
 
-        <!-- Set 2 (Duplicado para dar efecto infinito al scroll) -->
+        <!-- Set 2 -->
         <span class="pm-item"><i class="fas fa-credit-card pm-ico"></i>PAGA HASTA 6 CUOTAS SIN INTERÉS!</span>
         <span class="pm-item"><i class="fas fa-gift pm-ico"></i>5% DCTO EXTRA NUEVOS CLIENTES</span>
         <span class="pm-item"><i class="fas fa-truck pm-ico"></i>ENVÍOS A TODO CHILE</span>
@@ -50,9 +50,6 @@
             <a class="nav-link" href="Productos.html">Productos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="detalle_producto.html">Detalle de Producto</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="carrito.html">Carrito de Compras</a>
           </li> 
           <li class="nav-item dropdown">
@@ -65,8 +62,9 @@
             </ul>
           </li>
         </ul>
+        <!-- BOTONES DE AUTENTICACIÓN CORREGIDOS -->
         <div class="auth-buttons">
-          <a href="signup.html" class="btn btn-primary">Regístrate</a>
+          <a href="registro.html" class="btn btn-primary">Regístrate</a>
           <a href="login.html" class="btn btn-secondary">Iniciar sesión</a>
         </div>
       </div>
@@ -130,7 +128,7 @@
   <!-- COMPONENTE CARRITO FLOTANTE -->
   <div id="cart-container" class="floating-cart-container">
     <button id="cart-toggle-btn" class="cart-btn" aria-label="Abrir carrito">
-      🛒 <span id="cart-counter" class="badge">0</span>
+      🛒 <span id="cart-counter" class="badge bg-danger">0</span>
     </button>
   
     <div id="cart-popup" class="cart-popup hidden">
@@ -151,8 +149,8 @@
     </div>
   </div>
 
-  <!-- Scripts JS de Bootstrap y lógica propia del carrito -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/productos.js"></script>
   <script src="js/carrito.js"></script>
 </body>
 </html>
