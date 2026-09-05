@@ -1,310 +1,208 @@
-/* ==========================================
-   1. ESTILOS DE LA BARRA SUPERIOR (MARQUEE)
-   ========================================== */
-.pm-marquee-wrap {
-    background-color: #2b2055 !important;
-    color: #ffffff !important;
-    overflow: hidden;
-    white-space: nowrap;
-    position: relative;
-    padding: 10px 0;
-    font-size: 0.85rem;
-    font-weight: 600;
-    border: none;
+// Clave única para localStorage
+const CLAVE_CARRITO = 'mi_carrito';
+
+function obtenerCarrito() {
+  return JSON.parse(localStorage.getItem(CLAVE_CARRITO)) || [];
 }
 
-.pm-marquee-wrap *,
-.pm-marquee-wrap i,
-.pm-item {
-    color: #ffffff !important;
+function guardarCarrito(carrito) {
+  localStorage.setItem(CLAVE_CARRITO, JSON.stringify(carrito));
+  actualizarVistaCarrito();
+  if (document.getElementById('tabla-carrito-contenedor')) {
+    renderizarPaginaCarrito();
+  }
 }
 
-.pm-marquee {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    overflow: hidden;
+function agregarAlCarrito(nombre, precio, imagen = '') {
+  let carrito = obtenerCarrito();
+  const indice = carrito.findIndex(item => item.nombre === nombre);
+
+  if (indice !== -1) {
+    carrito[indice].cantidad += 1;
+  } else {
+    carrito.push({ nombre, precio, imagen, cantidad: 1 });
+  }
+
+  guardarCarrito(carrito);
+  alert(`"${nombre}" se agregó al carrito.`);
 }
 
-.pm-marquee-track {
-    display: flex;
-    gap: 3rem;
-    animation: marquee 18s linear infinite;
-    will-change: transform;
+function eliminarDelCarrito(index) {
+  let carrito = obtenerCarrito();
+  carrito.splice(index, 1);
+  guardarCarrito(carrito);
 }
 
-.pm-item {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
+function cambiarCantidad(index, cambio) {
+  let carrito = obtenerCarrito();
+  carrito[index].cantidad += cambio;
+
+  if (carrito[index].cantidad <= 0) {
+    carrito.splice(index, 1);
+  }
+
+  guardarCarrito(carrito);
 }
 
-.pm-ico {
-    font-size: 1rem;
+function vaciarCarrito() {
+  if (confirm("¿Estás seguro de que deseas vaciar el carrito?")) {
+    localStorage.removeItem(CLAVE_CARRITO);
+    actualizarVistaCarrito();
+    if (document.getElementById('tabla-carrito-contenedor')) {
+      renderizarPaginaCarrito();
+    }
+  }
 }
 
-@keyframes marquee {
-    0% { transform: translateX(0%); }
-    100% { transform: translateX(-50%); }
+function finalizarCompra() {
+  const carrito = obtenerCarrito();
+  if (carrito.length === 0) {
+    alert("Tu carrito está vacío.");
+    return;
+  }
+  alert("¡Gracias por tu compra! Tu pedido ha sido procesado.");
+  localStorage.removeItem(CLAVE_CARRITO);
+  window.location.href = "index.html";
 }
 
-/* ==========================================
-   2. FONDO GENERAL Y DE PÁGINAS ESPECÍFICAS
-   ========================================== */
-body {
-    background-image:
-        linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-        url('../imagenes/FondoTienda.png');
-    background-repeat: repeat;
-    background-position: center top;
-    background-attachment: fixed;
-    background-size: cover;
-    min-height: 100vh;
-    color: #ffffff;
+// Actualizar contador y contenido del desplegable flotante
+function actualizarVistaCarrito() {
+  const carrito = obtenerCarrito();
+  const contadorBadge = document.getElementById('cart-counter');
+  const contenedorBody = document.getElementById('cart-body-content');
+  const totalPrecio = document.getElementById('cart-total-price');
+
+  const totalItems = carrito.reduce((acc, item) => acc + item.cantidad, 0);
+  if (contadorBadge) contadorBadge.textContent = totalItems;
+
+  if (contenedorBody) {
+    contenedorBody.innerHTML = '';
+    let total = 0;
+
+    if (carrito.length === 0) {
+      contenedorBody.innerHTML = '<p class="text-center text-white-50 my-3" style="font-size:0.9rem;">El carrito está vacío</p>';
+    } else {
+      carrito.forEach((item, index) => {
+        const subtotal = item.precio * item.cantidad;
+        total += subtotal;
+
+        contenedorBody.innerHTML += `
+          <div class="d-flex justify-content-between align-items-center mb-2 border-bottom border-secondary pb-2">
+            <div>
+              <h6 class="my-0 text-white fw-bold" style="font-size:13px;">${item.nombre}</h6>
+              <small class="text-white-50" style="font-size:11px;">$${item.precio.toLocaleString('cl-CL')} x ${item.cantidad}</small>
+            </div>
+            <div class="d-flex align-items-center">
+              <span class="text-info fw-bold me-2" style="font-size:13px;">$${subtotal.toLocaleString('cl-CL')}</span>
+              <button class="btn btn-sm btn-outline-danger py-0 px-1" onclick="eliminarDelCarrito(${index})">&times;</button>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    if (totalPrecio) totalPrecio.textContent = `$${total.toLocaleString('cl-CL')}`;
+  }
 }
 
-body.body-lore {
-    background-image:
-        linear-gradient(to bottom, rgba(56, 0, 121, 0.7), rgba(65, 8, 119, 0.7)),
-        url('../imagenes/us.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center top;
-    background-attachment: fixed;
-    min-height: 100vh;
+// Renderizar la vista principal en carrito.html
+function renderizarPaginaCarrito() {
+  const contenedor = document.getElementById('tabla-carrito-contenedor');
+  const resumenSubtotal = document.getElementById('resumen-subtotal');
+  const resumenTotal = document.getElementById('resumen-total');
+
+  if (!contenedor) return;
+
+  const carrito = obtenerCarrito();
+
+  if (carrito.length === 0) {
+    contenedor.innerHTML = `
+      <div class="text-center py-5">
+        <i class="fas fa-shopping-cart fa-3x mb-3 text-secondary"></i>
+        <h3>Tu carrito está vacío</h3>
+        <p class="text-white-50">Parece que aún no has añadido productos.</p>
+        <a href="Productos.html" class="btn btn-primary mt-2">Explorar Productos</a>
+      </div>
+    `;
+    if (resumenSubtotal) resumenSubtotal.textContent = '$0';
+    if (resumenTotal) resumenTotal.textContent = '$0';
+    return;
+  }
+
+  let html = `
+    <table class="table table-dark table-hover align-middle mb-0">
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Precio</th>
+          <th class="text-center">Cantidad</th>
+          <th class="text-end">Subtotal</th>
+          <th class="text-center">Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+  `;
+
+  let total = 0;
+
+  carrito.forEach((item, index) => {
+    const subtotal = item.precio * item.cantidad;
+    total += subtotal;
+
+    html += `
+      <tr>
+        <td>
+          <div class="d-flex align-items-center">
+            ${item.imagen ? `<img src="${item.imagen}" alt="${item.nombre}" class="rounded me-3" style="width:45px; height:45px; object-fit:cover;">` : ''}
+            <span class="fw-bold">${item.nombre}</span>
+          </div>
+        </td>
+        <td>$${item.precio.toLocaleString('cl-CL')}</td>
+        <td class="text-center">
+          <div class="btn-group btn-group-sm">
+            <button class="btn btn-outline-light" onclick="cambiarCantidad(${index}, -1)">-</button>
+            <span class="btn btn-dark disabled text-white px-3 fw-bold">${item.cantidad}</span>
+            <button class="btn btn-outline-light" onclick="cambiarCantidad(${index}, 1)">+</button>
+          </div>
+        </td>
+        <td class="text-end fw-bold">$${subtotal.toLocaleString('cl-CL')}</td>
+        <td class="text-center">
+          <button class="btn btn-sm btn-danger" onclick="eliminarDelCarrito(${index})">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+        </td>
+      </tr>
+    `;
+  });
+
+  html += `</tbody></table>`;
+  contenedor.innerHTML = html;
+
+  if (resumenSubtotal) resumenSubtotal.textContent = `$${total.toLocaleString('cl-CL')}`;
+  if (resumenTotal) resumenTotal.textContent = `$${total.toLocaleString('cl-CL')}`;
 }
 
-/* ==========================================
-   3. BARRA DE NAVEGACIÓN (NAVBAR)
-   ========================================== */
-.navbar-custom {
-    background-color: #1a1235 !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
+// Asignación de evento para abrir/cerrar desplegable
+document.addEventListener('DOMContentLoaded', () => {
+  actualizarVistaCarrito();
+  if (document.getElementById('tabla-carrito-contenedor')) {
+    renderizarPaginaCarrito();
+  }
 
-.navbar-custom .navbar-brand,
-.navbar-custom .nav-link {
-    color: #ffffff !important;
-    font-weight: 500;
-}
+  const toggleBtn = document.getElementById('cart-toggle-btn') || document.querySelector('.cart-btn');
+  const closeBtn = document.getElementById('cart-close-btn');
+  const cartPopup = document.getElementById('cart-popup');
 
-.navbar-custom .nav-link:hover,
-.navbar-custom .nav-link.active {
-    color: #ff8c00 !important;
-}
+  if (toggleBtn && cartPopup) {
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      cartPopup.classList.toggle('hidden');
+    });
+  }
 
-.navbar-custom .navbar-toggler-icon {
-    filter: invert(1);
-}
-
-.navbar-custom .dropdown-menu {
-    background-color: #2b2055;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-.navbar-custom .dropdown-item {
-    color: #ffffff;
-}
-
-.navbar-custom .dropdown-item:hover {
-    background-color: #3b2d6b;
-    color: #ff8c00;
-}
-
-/* ==========================================
-   4. TIPOGRAFÍA Y BOTONES
-   ========================================== */
-.titulo-principal {
-    color: #ffffff !important;
-    font-weight: 800;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
-}
-
-.subtitulo-principal {
-    color: #e0e0e0 !important;
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
-}
-
-.auth-buttons {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-}
-
-.btn {
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-weight: 500;
-    text-decoration: none;
-    font-family: system-ui, -apple-system, sans-serif;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
-    display: inline-block;
-    text-align: center;
-}
-
-.btn-primary {
-    background-color: #331853 !important;
-    border-color: #331853 !important;
-    color: #ffffff !important;
-}
-
-.btn-primary:hover {
-    background-color: #580770 !important;
-    border-color: #580770 !important;
-}
-
-.btn-secondary {
-    background-color: #e4e6eb !important;
-    border-color: #e4e6eb !important;
-    color: #050505 !important;
-}
-
-.btn-secondary:hover {
-    background-color: #d8dadf !important;
-    border-color: #d8dadf !important;
-}
-
-/* ==========================================
-   5. CARRITO DE COMPRAS FLOTANTE (DARK/PURPLE)
-   ========================================== */
-.floating-cart-container {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    z-index: 1050;
-    font-family: sans-serif;
-}
-
-.cart-btn {
-    background-color: #3b1e54;
-    color: #ffffff;
-    border: 1px solid #5c2c84;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    font-size: 24px;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    transition: transform 0.2s ease, background-color 0.2s ease;
-}
-
-.cart-btn:hover {
-    background-color: #5c2c84;
-    transform: scale(1.1);
-}
-
-.cart-btn .badge {
-    position: absolute;
-    top: -2px;
-    right: -2px;
-    background-color: #dc3545;
-    color: #ffffff;
-    font-size: 11px;
-    border-radius: 50%;
-    padding: 4px 7px;
-}
-
-/* Ventana emergente del Carrito */
-.cart-popup {
-    position: absolute;
-    bottom: 75px;
-    right: 0px;
-    width: 320px;
-    background-color: #1f1a24 !important; /* Fondo morado/negro oscuro */
-    border: 1px solid #3b1e54;
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    color: #ffffff !important;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.cart-popup.hidden {
-    display: none !important;
-    opacity: 0;
-    transform: scale(0.9);
-    pointer-events: none;
-}
-
-.cart-header {
-    background-color: #2a183d;
-    color: #ffffff;
-    padding: 12px 16px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #3b1e54;
-}
-
-.cart-header h3 {
-    margin: 0;
-    font-size: 16px;
-    font-weight: bold;
-    color: #ffffff !important;
-}
-
-.close-btn {
-    background: none;
-    border: none;
-    color: #ffffff;
-    font-size: 20px;
-    cursor: pointer;
-}
-
-.cart-body {
-    padding: 15px;
-    max-height: 250px;
-    overflow-y: auto;
-    background-color: #1f1a24 !important; /* Fondo morado oscuro */
-    color: #ffffff !important;
-}
-
-.cart-footer {
-    padding: 15px;
-    background-color: #18141d;
-    border-top: 1px solid #3b1e54;
-}
-
-.cart-total {
-    display: flex;
-    justify-content: space-between;
-    color: #ffffff !important;
-    margin-bottom: 12px;
-    font-size: 15px;
-}
-
-.checkout-btn {
-    display: block;
-    width: 100%;
-    background-color: #5c2c84;
-    color: #ffffff !important;
-    text-align: center;
-    padding: 10px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: bold;
-    border: none;
-    transition: background-color 0.2s ease;
-}
-
-.checkout-btn:hover {
-    background-color: #7237a3;
-    color: #ffffff !important;
-}
-
-/* ==========================================
-   6. TARJETA CONTENEDORA PARA DETALLE PRODUCTO
-   ========================================== */
-.card-detalle-producto {
-    background-color: rgba(26, 16, 43, 0.88);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 16px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
-}
+  if (closeBtn && cartPopup) {
+    closeBtn.addEventListener('click', () => {
+      cartPopup.classList.add('hidden');
+    });
+  }
+});
