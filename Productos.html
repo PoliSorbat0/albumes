@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productos - Tienda Álbumes</title>
-    
-    <link rel="stylesheet" href="css/style.css">  
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Productos - Tienda Álbumes</title>
+  
+  <link rel="stylesheet" href="css/style.css">  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
-<body>
+<body class="text-white">
 
   <!-- BARRA SUPERIOR DE ANUNCIOS -->
   <div class="m-0 rounded-0 text-center alert alert-dismissible fade show pm-marquee-wrap" role="alert">
@@ -19,8 +19,6 @@
         <span class="pm-item"><i class="fas fa-credit-card pm-ico"></i>PAGA HASTA 6 CUOTAS SIN INTERÉS!</span>
         <span class="pm-item"><i class="fas fa-gift pm-ico"></i>5% DCTO EXTRA NUEVOS CLIENTES</span>
         <span class="pm-item"><i class="fas fa-truck pm-ico"></i>ENVÍOS A TODO CHILE</span>
-        <span class="pm-item"><i class="fas fa-credit-card pm-ico"></i>PAGA HASTA 6 CUOTAS SIN INTERÉS!</span>
-        <span class="pm-item"><i class="fas fa-gift pm-ico"></i>5% DCTO EXTRA NUEVOS CLIENTES</span>
       </div>
     </div>
     <button type="button" class="btn-close btn-close-white me-2" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -37,7 +35,6 @@
         <ul class="navbar-nav me-auto">
           <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
           <li class="nav-item"><a class="nav-link active" href="Productos.html">Productos</a></li>
-          <li class="nav-item"><a class="nav-link" href="detalle_producto.html">Detalle de Producto</a></li>
           <li class="nav-item"><a class="nav-link" href="carrito.html">Carrito de Compras</a></li> 
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAbout" role="button" data-bs-toggle="dropdown">¡Sobre Nosotros!</a>
@@ -48,7 +45,7 @@
           </li>
         </ul>
         <div class="auth-buttons">
-          <a href="signup.html" class="btn btn-primary">Regístrate</a>
+          <a href="registro.html" class="btn btn-primary">Regístrate</a>
           <a href="login.html" class="btn btn-secondary">Iniciar sesión</a>
         </div>
       </div>
@@ -57,97 +54,349 @@
 
   <!-- CATÁLOGO DE PRODUCTOS -->
   <main class="container my-5 text-center">
-    <h1 class="mb-5 titulo-principal display-4">¿Qué tienes ganas de escuchar?</h1>
+    <h1 class="mb-4 titulo-principal display-4">¿Qué tienes ganas de escuchar?</h1>
 
-    <!-- GRID DE PRODUCTOS (Uso de clases de rejilla de Bootstrap) -->
+    <!-- BARRA DE BÚSQUEDA -->
+    <div class="row mb-5 justify-content-center">
+      <div class="col-12 col-md-6">
+        <input type="text" id="input-busqueda" class="form-control bg-dark text-white border-secondary" placeholder="Buscar por título o artista...">
+      </div>
+    </div>
+
     <div class="row justify-content-center g-4">
 
-      <!-- Producto 1 -->
-      <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
-        <div class="card text-dark shadow-sm h-100" style="width: 18rem;">
-          <img src="imagenes/Tool-AEnima.jpg" class="card-img-top" alt="AEnima">
+      <!-- TOOL - Ænima -->
+      <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center columna-producto">
+        <div class="card card-producto text-dark shadow-sm h-100" style="width: 18rem;">
+          <a href="detalle_producto.html?id=aenima">
+            <img src="imagenes/Tool-AEnima.jpg" class="card-img-top" alt="Ænima">
+          </a>
           <div class="card-body d-flex flex-column justify-content-between">
             <div>
-              <h5 class="card-title fw-bold">Ænima</h5>
-              <p class="card-text text-secondary mb-1">TOOL - Edición Vinilo 180g.</p>
+              <h5 class="card-title fw-bold">
+                <a href="detalle_producto.html?id=aenima" class="text-decoration-none text-dark">Ænima</a>
+              </h5>
+              <p class="card-text text-secondary mb-1">TOOL</p>
               <p class="fw-bold text-primary fs-5">$34.990</p>
             </div>
-            <button onclick="agregarAlCarrito('Ænima - TOOL', 34990)" class="btn btn-primary mt-3">Añadir al carrito</button>
+            <button onclick="agregarAlCarrito('Ænima - TOOL', 34990, 'imagenes/Tool-AEnima.jpg')" class="btn btn-primary mt-3">
+              <i class="fas fa-shopping-cart me-1"></i> Añadir al carrito
+            </button>
           </div>
         </div>
       </div>
 
-      <!-- Producto 2 -->
-      <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
-        <div class="card text-dark shadow-sm h-100" style="width: 18rem;">
-          <img src="imagenes/AliceInChains-JarOfflies.jpg" class="card-img-top" alt="Jar of Flies">
+      <!-- Alice in Chains - Jar of Flies -->
+      <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center columna-producto">
+        <div class="card card-producto text-dark shadow-sm h-100" style="width: 18rem;">
+          <a href="detalle_producto.html?id=jar-of-flies">
+            <img src="imagenes/AliceInChains-JarOfflies.jpg" class="card-img-top" alt="Jar of Flies">
+          </a>
           <div class="card-body d-flex flex-column justify-content-between">
             <div>
-              <h5 class="card-title fw-bold">Jar of Flies</h5>
-              <p class="card-text text-secondary mb-1">Alice in Chains - Vinilo 180g.</p>
+              <h5 class="card-title fw-bold">
+                <a href="detalle_producto.html?id=jar-of-flies" class="text-decoration-none text-dark">Jar of Flies</a>
+              </h5>
+              <p class="card-text text-secondary mb-1">Alice in Chains</p>
               <p class="fw-bold text-primary fs-5">$28.990</p>
             </div>
-            <button onclick="agregarAlCarrito('Jar of Flies - Alice in Chains', 28990)" class="btn btn-primary mt-3">Añadir al carrito</button>
+            <button onclick="agregarAlCarrito('Jar of Flies - Alice in Chains', 28990, 'imagenes/AliceInChains-JarOfflies.jpg')" class="btn btn-primary mt-3">
+              <i class="fas fa-shopping-cart me-1"></i> Añadir al carrito
+            </button>
           </div>
         </div>
       </div>
 
-      <!-- Producto 3 -->
-      <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
-        <div class="card text-dark shadow-sm h-100" style="width: 18rem;">
-          <img src="imagenes/AliceInChains-Dirt.jpg" class="card-img-top" alt="Dirt">
+      <!-- Alice in Chains - Dirt -->
+      <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center columna-producto">
+        <div class="card card-producto text-dark shadow-sm h-100" style="width: 18rem;">
+          <a href="detalle_producto.html?id=dirt">
+            <img src="imagenes/AliceInChains-Dirt.jpg" class="card-img-top" alt="Dirt">
+          </a>
           <div class="card-body d-flex flex-column justify-content-between">
             <div>
-              <h5 class="card-title fw-bold">Dirt</h5>
-              <p class="card-text text-secondary mb-1">Alice in Chains - Vinilo 180g.</p>
+              <h5 class="card-title fw-bold">
+                <a href="detalle_producto.html?id=dirt" class="text-decoration-none text-dark">Dirt</a>
+              </h5>
+              <p class="card-text text-secondary mb-1">Alice in Chains</p>
               <p class="fw-bold text-primary fs-5">$31.990</p>
             </div>
-            <button onclick="agregarAlCarrito('Dirt - Alice in Chains', 31990)" class="btn btn-primary mt-3">Añadir al carrito</button>
+            <button onclick="agregarAlCarrito('Dirt - Alice in Chains', 31990, 'imagenes/AliceInChains-Dirt.jpg')" class="btn btn-primary mt-3">
+              <i class="fas fa-shopping-cart me-1"></i> Añadir al carrito
+            </button>
           </div>
         </div>
       </div>
 
-      <!-- Producto 4 -->
-      <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
-        <div class="card text-dark shadow-sm h-100" style="width: 18rem;">
-          <img src="imagenes/Deftones-WhitePony.jpg" class="card-img-top" alt="White Pony">
+      <!-- Deftones - White Pony -->
+      <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center columna-producto">
+        <div class="card card-producto text-dark shadow-sm h-100" style="width: 18rem;">
+          <a href="detalle_producto.html?id=white-pony">
+            <img src="imagenes/Deftones-WhitePony.jpg" class="card-img-top" alt="White Pony">
+          </a>
           <div class="card-body d-flex flex-column justify-content-between">
             <div>
-              <h5 class="card-title fw-bold">White Pony</h5>
-              <p class="card-text text-secondary mb-1">Deftones - Vinilo 180g.</p>
+              <h5 class="card-title fw-bold">
+                <a href="detalle_producto.html?id=white-pony" class="text-decoration-none text-dark">White Pony</a>
+              </h5>
+              <p class="card-text text-secondary mb-1">Deftones</p>
               <p class="fw-bold text-primary fs-5">$32.990</p>
             </div>
-            <button onclick="agregarAlCarrito('White Pony - Deftones', 32990)" class="btn btn-primary mt-3">Añadir al carrito</button>
+            <button onclick="agregarAlCarrito('White Pony - Deftones', 32990, 'imagenes/Deftones-WhitePony.jpg')" class="btn btn-primary mt-3">
+              <i class="fas fa-shopping-cart me-1"></i> Añadir al carrito
+            </button>
           </div>
         </div>
       </div>
 
-      <!-- Producto 5 -->
-      <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
-        <div class="card text-dark shadow-sm h-100" style="width: 18rem;">
-          <img src="imagenes/LinkinPark-Meteora.jpg" class="card-img-top" alt="Meteora">
+      <!-- Linkin Park - Meteora -->
+      <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center columna-producto">
+        <div class="card card-producto text-dark shadow-sm h-100" style="width: 18rem;">
+          <a href="detalle_producto.html?id=meteora">
+            <img src="imagenes/LinkinPark-Meteora.jpg" class="card-img-top" alt="Meteora">
+          </a>
           <div class="card-body d-flex flex-column justify-content-between">
             <div>
-              <h5 class="card-title fw-bold">Meteora</h5>
-              <p class="card-text text-secondary mb-1">Linkin Park - Vinilo 180g.</p>
+              <h5 class="card-title fw-bold">
+                <a href="detalle_producto.html?id=meteora" class="text-decoration-none text-dark">Meteora</a>
+              </h5>
+              <p class="card-text text-secondary mb-1">Linkin Park</p>
               <p class="fw-bold text-primary fs-5">$29.990</p>
             </div>
-            <button onclick="agregarAlCarrito('Meteora - Linkin Park', 29990)" class="btn btn-primary mt-3">Añadir al carrito</button>
+            <button onclick="agregarAlCarrito('Meteora - Linkin Park', 29990, 'imagenes/LinkinPark-Meteora.jpg')" class="btn btn-primary mt-3">
+              <i class="fas fa-shopping-cart me-1"></i> Añadir al carrito
+            </button>
           </div>
         </div>
       </div>
 
-      <!-- Producto 6 -->
-      <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
-        <div class="card text-dark shadow-sm h-100" style="width: 18rem;">
-          <img src="imagenes/LimpBizkit-ChocolateStarFishAndTheHotDogFlavoredWater.jpg" class="card-img-top" alt="Chocolate Starfish">
+      <!-- Limp Bizkit - Chocolate Starfish -->
+      <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center columna-producto">
+        <div class="card card-producto text-dark shadow-sm h-100" style="width: 18rem;">
+          <a href="detalle_producto.html?id=chocolate-starfish">
+            <img src="imagenes/LimpBizkit-ChocolateStarFishAndTheHotDogFlavoredWater.jpg" class="card-img-top" alt="Chocolate Starfish">
+          </a>
           <div class="card-body d-flex flex-column justify-content-between">
             <div>
-              <h5 class="card-title fw-bold">Chocolate Starfish</h5>
-              <p class="card-text text-secondary mb-1">Limp Bizkit - Vinilo 180g.</p>
+              <h5 class="card-title fw-bold">
+                <a href="detalle_producto.html?id=chocolate-starfish" class="text-decoration-none text-dark">Chocolate Starfish</a>
+              </h5>
+              <p class="card-text text-secondary mb-1">Limp Bizkit</p>
               <p class="fw-bold text-primary fs-5">$27.990</p>
             </div>
-            <button onclick="agregarAlCarrito('Chocolate Starfish - Limp Bizkit', 27990)" class="btn btn-primary mt-3">Añadir al carrito</button>
+            <button onclick="agregarAlCarrito('Chocolate Starfish - Limp Bizkit', 27990, 'imagenes/LimpBizkit-ChocolateStarFishAndTheHotDogFlavoredWater.jpg')" class="btn btn-primary mt-3">
+              <i class="fas fa-shopping-cart me-1"></i> Añadir al carrito
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Limp Bizkit - Gold Cobra -->
+      <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center columna-producto">
+        <div class="card card-producto text-dark shadow-sm h-100" style="width: 18rem;">
+          <a href="detalle_producto.html?id=gold-cobra">
+            <img src="imagenes/Limpbizkit-GoldenCobra.jpg" class="card-img-top" alt="Gold Cobra">
+          </a>
+          <div class="card-body d-flex flex-column justify-content-between">
+            <div>
+              <h5 class="card-title fw-bold">
+                <a href="detalle_producto.html?id=gold-cobra" class="text-decoration-none text-dark">Gold Cobra</a>
+              </h5>
+              <p class="card-text text-secondary mb-1">Limp Bizkit</p>
+              <p class="fw-bold text-primary fs-5">$26.990</p>
+            </div>
+            <button onclick="agregarAlCarrito('Gold Cobra - Limp Bizkit', 26990, 'imagenes/Limpbizkit-GoldenCobra.jpg')" class="btn btn-primary mt-3">
+              <i class="fas fa-shopping-cart me-1"></i> Añadir al carrito
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Papa Roach - Infest -->
+      <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center columna-producto">
+        <div class="card card-producto text-dark shadow-sm h-100" style="width: 18rem;">
+          <a href="detalle_producto.html?id=infest">
+            <img src="imagenes/PapaRoach-Infest.jpg" class="card-img-top" alt="Infest">
+          </a>
+          <div class="card-body d-flex flex-column justify-content-between">
+            <div>
+              <h5 class="card-title fw-bold">
+                <a href="detalle_producto.html?id=infest" class="text-decoration-none text-dark">Infest</a>
+              </h5>
+              <p class="card-text text-secondary mb-1">Papa Roach</p>
+              <p class="fw-bold text-primary fs-5">$25.990</p>
+            </div>
+            <button onclick="agregarAlCarrito('Infest - Papa Roach', 25990, 'imagenes/PapaRoach-Infest.jpg')" class="btn btn-primary mt-3">
+              <i class="fas fa-shopping-cart me-1"></i> Añadir al carrito
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Porcupine Tree - Deadwing -->
+      <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center columna-producto">
+        <div class="card card-producto text-dark shadow-sm h-100" style="width: 18rem;">
+          <a href="detalle_producto.html?id=deadwing">
+            <img src="imagenes/PorcupineTree-Deadwing.jpg" class="card-img-top" alt="Deadwing">
+          </a>
+          <div class="card-body d-flex flex-column justify-content-between">
+            <div>
+              <h5 class="card-title fw-bold">
+                <a href="detalle_producto.html?id=deadwing" class="text-decoration-none text-dark">Deadwing</a>
+              </h5>
+              <p class="card-text text-secondary mb-1">Porcupine Tree</p>
+              <p class="fw-bold text-primary fs-5">$30.990</p>
+            </div>
+            <button onclick="agregarAlCarrito('Deadwing - Porcupine Tree', 30990, 'imagenes/PorcupineTree-Deadwing.jpg')" class="btn btn-primary mt-3">
+              <i class="fas fa-shopping-cart me-1"></i> Añadir al carrito
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Porcupine Tree - In Absentia -->
+      <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center columna-producto">
+        <div class="card card-producto text-dark shadow-sm h-100" style="width: 18rem;">
+          <a href="detalle_producto.html?id=in-absentia">
+            <img src="imagenes/PorcupineTree-InAbsentia.jpg" class="card-img-top" alt="In Absentia">
+          </a>
+          <div class="card-body d-flex flex-column justify-content-between">
+            <div>
+              <h5 class="card-title fw-bold">
+                <a href="detalle_producto.html?id=in-absentia" class="text-decoration-none text-dark">In Absentia</a>
+              </h5>
+              <p class="card-text text-secondary mb-1">Porcupine Tree</p>
+              <p class="fw-bold text-primary fs-5">$31.990</p>
+            </div>
+            <button onclick="agregarAlCarrito('In Absentia - Porcupine Tree', 31990, 'imagenes/PorcupineTree-InAbsentia.jpg')" class="btn btn-primary mt-3">
+              <i class="fas fa-shopping-cart me-1"></i> Añadir al carrito
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rammstein - Reise, Reise -->
+      <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center columna-producto">
+        <div class="card card-producto text-dark shadow-sm h-100" style="width: 18rem;">
+          <a href="detalle_producto.html?id=reise-reise">
+            <img src="imagenes/Rammstein-ReiseReise.jpg" class="card-img-top" alt="Reise, Reise">
+          </a>
+          <div class="card-body d-flex flex-column justify-content-between">
+            <div>
+              <h5 class="card-title fw-bold">
+                <a href="detalle_producto.html?id=reise-reise" class="text-decoration-none text-dark">Reise, Reise</a>
+              </h5>
+              <p class="card-text text-secondary mb-1">Rammstein</p>
+              <p class="fw-bold text-primary fs-5">$33.990</p>
+            </div>
+            <button onclick="agregarAlCarrito('Reise, Reise - Rammstein', 33990, 'imagenes/Rammstein-ReiseReise.jpg')" class="btn btn-primary mt-3">
+              <i class="fas fa-shopping-cart me-1"></i> Añadir al carrito
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Red Hot Chili Peppers - Californication -->
+      <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center columna-producto">
+        <div class="card card-producto text-dark shadow-sm h-100" style="width: 18rem;">
+          <a href="detalle_producto.html?id=californication">
+            <img src="imagenes/RedHotChiliPeppers-Californication.jpg" class="card-img-top" alt="Californication">
+          </a>
+          <div class="card-body d-flex flex-column justify-content-between">
+            <div>
+              <h5 class="card-title fw-bold">
+                <a href="detalle_producto.html?id=californication" class="text-decoration-none text-dark">Californication</a>
+              </h5>
+              <p class="card-text text-secondary mb-1">Red Hot Chili Peppers</p>
+              <p class="fw-bold text-primary fs-5">$29.990</p>
+            </div>
+            <button onclick="agregarAlCarrito('Californication - RHCP', 29990, 'imagenes/RedHotChiliPeppers-Californication.jpg')" class="btn btn-primary mt-3">
+              <i class="fas fa-shopping-cart me-1"></i> Añadir al carrito
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stone Temple Pilots - Purple -->
+      <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center columna-producto">
+        <div class="card card-producto text-dark shadow-sm h-100" style="width: 18rem;">
+          <a href="detalle_producto.html?id=purple">
+            <img src="imagenes/StoneTemplePilot-Purple.jpg" class="card-img-top" alt="Purple">
+          </a>
+          <div class="card-body d-flex flex-column justify-content-between">
+            <div>
+              <h5 class="card-title fw-bold">
+                <a href="detalle_producto.html?id=purple" class="text-decoration-none text-dark">Purple</a>
+              </h5>
+              <p class="card-text text-secondary mb-1">Stone Temple Pilots</p>
+              <p class="fw-bold text-primary fs-5">$28.990</p>
+            </div>
+            <button onclick="agregarAlCarrito('Purple - STP', 28990, 'imagenes/StoneTemplePilot-Purple.jpg')" class="btn btn-primary mt-3">
+              <i class="fas fa-shopping-cart me-1"></i> Añadir al carrito
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- The Cure - Disintegration -->
+      <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center columna-producto">
+        <div class="card card-producto text-dark shadow-sm h-100" style="width: 18rem;">
+          <a href="detalle_producto.html?id=disintegration">
+            <img src="imagenes/TheCure-Desintegration.jpg" class="card-img-top" alt="Disintegration">
+          </a>
+          <div class="card-body d-flex flex-column justify-content-between">
+            <div>
+              <h5 class="card-title fw-bold">
+                <a href="detalle_producto.html?id=disintegration" class="text-decoration-none text-dark">Disintegration</a>
+              </h5>
+              <p class="card-text text-secondary mb-1">The Cure</p>
+              <p class="fw-bold text-primary fs-5">$32.990</p>
+            </div>
+            <button onclick="agregarAlCarrito('Disintegration - The Cure', 32990, 'imagenes/TheCure-Desintegration.jpg')" class="btn btn-primary mt-3">
+              <i class="fas fa-shopping-cart me-1"></i> Añadir al carrito
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- The Cure - Wish -->
+      <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center columna-producto">
+        <div class="card card-producto text-dark shadow-sm h-100" style="width: 18rem;">
+          <a href="detalle_producto.html?id=wish">
+            <img src="imagenes/TheCure-Wish.jpg" class="card-img-top" alt="Wish">
+          </a>
+          <div class="card-body d-flex flex-column justify-content-between">
+            <div>
+              <h5 class="card-title fw-bold">
+                <a href="detalle_producto.html?id=wish" class="text-decoration-none text-dark">Wish</a>
+              </h5>
+              <p class="card-text text-secondary mb-1">The Cure</p>
+              <p class="fw-bold text-primary fs-5">$30.990</p>
+            </div>
+            <button onclick="agregarAlCarrito('Wish - The Cure', 30990, 'imagenes/TheCure-Wish.jpg')" class="btn btn-primary mt-3">
+              <i class="fas fa-shopping-cart me-1"></i> Añadir al carrito
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Type O Negative - Life Is Killing Me -->
+      <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center columna-producto">
+        <div class="card card-producto text-dark shadow-sm h-100" style="width: 18rem;">
+          <a href="detalle_producto.html?id=life-is-killing-me">
+            <img src="imagenes/TypeOfNegative-LikelsKillingMe.jpg" class="card-img-top" alt="Life Is Killing Me">
+          </a>
+          <div class="card-body d-flex flex-column justify-content-between">
+            <div>
+              <h5 class="card-title fw-bold">
+                <a href="detalle_producto.html?id=life-is-killing-me" class="text-decoration-none text-dark">Life Is Killing Me</a>
+              </h5>
+              <p class="card-text text-secondary mb-1">Type O Negative</p>
+              <p class="fw-bold text-primary fs-5">$33.990</p>
+            </div>
+            <button onclick="agregarAlCarrito('Life Is Killing Me - Type O Negative', 33990, 'imagenes/TypeOfNegative-LikelsKillingMe.jpg')" class="btn btn-primary mt-3">
+              <i class="fas fa-shopping-cart me-1"></i> Añadir al carrito
+            </button>
           </div>
         </div>
       </div>
@@ -160,7 +409,7 @@
     <button id="cart-toggle-btn" class="cart-btn" aria-label="Abrir carrito">
       🛒 <span id="cart-counter" class="badge">0</span>
     </button>
-  
+    
     <div id="cart-popup" class="cart-popup hidden">
       <div class="cart-header">
         <h3>Tu Carrito</h3>
@@ -178,6 +427,7 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/productos.js"></script>
   <script src="js/carrito.js"></script>
 </body>
 </html>
