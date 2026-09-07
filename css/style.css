@@ -111,6 +111,21 @@ body.body-lore {
     color: #ff8c00;
 }
 
+/* Logo de la marca en la barra de navegación */
+.navbar-custom .navbar-brand img.navbar-logo {
+    height: 42px;
+    width: auto;
+    object-fit: contain;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+@media (max-width: 576px) {
+    .navbar-custom .navbar-brand img.navbar-logo {
+        height: 34px;
+    }
+}
+
 /* ==========================================
    4. TIPOGRAFÍA Y BOTONES
    ========================================== */
