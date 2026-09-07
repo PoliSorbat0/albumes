@@ -1,41 +1,59 @@
 <!DOCTYPE html>
+<!-- Declaración del tipo de documento HTML5 -->
 <html lang="es">
 <head>
+  <!-- Codificación de caracteres en UTF-8 para garantizar el correcto renderizado de tildes y caracteres especiales -->
   <meta charset="UTF-8">
+  <!-- Configuración del viewport para asegurar una respuesta adaptativa (responsive) en móviles y pantallas pequeñas -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Productos - Tienda Álbumes</title>
   
-  <link rel="stylesheet" href="css/style.css">  
+  <!-- Estilos del framework Bootstrap 5 via CDN -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Hoja de estilos CSS personalizada -->
+  <link rel="stylesheet" href="css/style.css">  
+  <!-- Librería de íconos tipográficos FontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
+<!-- La clase 'text-white' aplica color de texto blanco por defecto en el cuerpo de la página -->
 <body class="text-white">
 
   <!-- BARRA SUPERIOR DE ANUNCIOS -->
+  <!-- Alerta de Bootstrap (alert-dismissible) que actúa como cinta o marquesina publicitaria superior -->
   <div class="m-0 rounded-0 text-center alert alert-dismissible fade show pm-marquee-wrap" role="alert">
     <div class="pm-marquee">
+      <!-- Pista interna animada mediante CSS para deslizar los mensajes publicitarios -->
       <div class="pm-marquee-track" aria-label="Beneficios de la tienda">
         <span class="pm-item"><i class="fas fa-credit-card pm-ico"></i>PAGA HASTA 6 CUOTAS SIN INTERÉS!</span>
         <span class="pm-item"><i class="fas fa-gift pm-ico"></i>5% DCTO EXTRA NUEVOS CLIENTES</span>
         <span class="pm-item"><i class="fas fa-truck pm-ico"></i>ENVÍOS A TODO CHILE</span>
       </div>
     </div>
+    <!-- Botón con funcionalidad Bootstrap para cerrar la cinta de anuncios -->
     <button type="button" class="btn-close btn-close-white me-2" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
 
   <!-- NAVBAR -->
+  <!-- Barra de navegación principal en tema oscuro con sombra suave (shadow-sm) -->
   <nav class="navbar navbar-expand-lg navbar-dark navbar-custom shadow-sm">
     <div class="container-fluid">
+      <!-- Nombre o logotipo textual de la marca -->
       <a class="navbar-brand fw-bold" href="index.html">Tienda Álbumes</a>
+      <!-- Botón de colapso/hamburguesa para menú en dispositivos móviles -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
         <span class="navbar-toggler-icon"></span>
       </button>
+      
+      <!-- Contenedor desplegable del menú -->
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav me-auto">
           <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+          <!-- Enlace activo (clase 'active') que resalta la vista actual de Productos -->
           <li class="nav-item"><a class="nav-link active" href="Productos.html">Productos</a></li>
           <li class="nav-item"><a class="nav-link" href="carrito.html">Carrito de Compras</a></li> 
+          
+          <!-- Desplegable "¡Sobre Nosotros!" -->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAbout" role="button" data-bs-toggle="dropdown">¡Sobre Nosotros!</a>
             <ul class="dropdown-menu">
@@ -44,6 +62,8 @@
             </ul>
           </li>
         </ul>
+        
+        <!-- Enlaces a formularios de autenticación -->
         <div class="auth-buttons">
           <a href="registro.html" class="btn btn-primary">Regístrate</a>
           <a href="login.html" class="btn btn-secondary">Iniciar sesión</a>
@@ -57,17 +77,21 @@
     <h1 class="mb-4 titulo-principal display-4">¿Qué tienes ganas de escuchar?</h1>
 
     <!-- BARRA DE BÚSQUEDA -->
+    <!-- Input de búsqueda vinculado por ID ('input-busqueda') para ser manipulado dinámicamente por el script JS -->
     <div class="row mb-5 justify-content-center">
       <div class="col-12 col-md-6">
         <input type="text" id="input-busqueda" class="form-control bg-dark text-white border-secondary" placeholder="Buscar por título o artista...">
       </div>
     </div>
 
+    <!-- REJILLA DE TARJETAS DE PRODUCTO -->
+    <!-- Cada columna posee la clase 'columna-producto' para facilitar la filtración mediante el buscador JavaScript -->
     <div class="row justify-content-center g-4">
 
       <!-- TOOL - Ænima -->
       <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center columna-producto">
-        <div class="card card-producto text-dark shadow-sm h-100" style="width: 18rem;">
+        <div class="card card-producto text-white shadow-sm h-100" style="width: 18rem;">
+          <!-- Enlace que redirige a detalle_producto.html pasando el ID por URL -->
           <a href="detalle_producto.html?id=aenima">
             <img src="imagenes/Tool-AEnima.jpg" class="card-img-top" alt="Ænima">
           </a>
@@ -79,6 +103,7 @@
               <p class="card-text text-secondary mb-1">TOOL</p>
               <p class="fw-bold text-primary fs-5">$34.990</p>
             </div>
+            <!-- Evento onclick que invoca la función global 'agregarAlCarrito' definida en js/carrito.js -->
             <button onclick="agregarAlCarrito('Ænima - TOOL', 34990, 'imagenes/Tool-AEnima.jpg')" class="btn btn-primary mt-3">
               <i class="fas fa-shopping-cart me-1"></i> Añadir al carrito
             </button>
@@ -88,7 +113,7 @@
 
       <!-- Alice in Chains - Jar of Flies -->
       <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center columna-producto">
-        <div class="card card-producto text-dark shadow-sm h-100" style="width: 18rem;">
+        <div class="card card-producto text-white shadow-sm h-100" style="width: 18rem;">
           <a href="detalle_producto.html?id=jar-of-flies">
             <img src="imagenes/AliceInChains-JarOfflies.jpg" class="card-img-top" alt="Jar of Flies">
           </a>
@@ -109,7 +134,7 @@
 
       <!-- Alice in Chains - Dirt -->
       <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center columna-producto">
-        <div class="card card-producto text-dark shadow-sm h-100" style="width: 18rem;">
+        <div class="card card-producto text-white shadow-sm h-100" style="width: 18rem;">
           <a href="detalle_producto.html?id=dirt">
             <img src="imagenes/AliceInChains-Dirt.jpg" class="card-img-top" alt="Dirt">
           </a>
@@ -130,7 +155,7 @@
 
       <!-- Deftones - White Pony -->
       <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center columna-producto">
-        <div class="card card-producto text-dark shadow-sm h-100" style="width: 18rem;">
+        <div class="card card-producto text-white shadow-sm h-100" style="width: 18rem;">
           <a href="detalle_producto.html?id=white-pony">
             <img src="imagenes/Deftones-WhitePony.jpg" class="card-img-top" alt="White Pony">
           </a>
@@ -151,7 +176,7 @@
 
       <!-- Linkin Park - Meteora -->
       <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center columna-producto">
-        <div class="card card-producto text-dark shadow-sm h-100" style="width: 18rem;">
+        <div class="card card-producto text-white shadow-sm h-100" style="width: 18rem;">
           <a href="detalle_producto.html?id=meteora">
             <img src="imagenes/LinkinPark-Meteora.jpg" class="card-img-top" alt="Meteora">
           </a>
@@ -172,7 +197,7 @@
 
       <!-- Limp Bizkit - Chocolate Starfish -->
       <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center columna-producto">
-        <div class="card card-producto text-dark shadow-sm h-100" style="width: 18rem;">
+        <div class="card card-producto text-white shadow-sm h-100" style="width: 18rem;">
           <a href="detalle_producto.html?id=chocolate-starfish">
             <img src="imagenes/LimpBizkit-ChocolateStarFishAndTheHotDogFlavoredWater.jpg" class="card-img-top" alt="Chocolate Starfish">
           </a>
@@ -193,7 +218,7 @@
 
       <!-- Limp Bizkit - Gold Cobra -->
       <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center columna-producto">
-        <div class="card card-producto text-dark shadow-sm h-100" style="width: 18rem;">
+        <div class="card card-producto text-white shadow-sm h-100" style="width: 18rem;">
           <a href="detalle_producto.html?id=gold-cobra">
             <img src="imagenes/Limpbizkit-GoldenCobra.jpg" class="card-img-top" alt="Gold Cobra">
           </a>
@@ -214,7 +239,7 @@
 
       <!-- Papa Roach - Infest -->
       <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center columna-producto">
-        <div class="card card-producto text-dark shadow-sm h-100" style="width: 18rem;">
+        <div class="card card-producto text-white shadow-sm h-100" style="width: 18rem;">
           <a href="detalle_producto.html?id=infest">
             <img src="imagenes/PapaRoach-Infest.jpg" class="card-img-top" alt="Infest">
           </a>
@@ -235,7 +260,7 @@
 
       <!-- Porcupine Tree - Deadwing -->
       <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center columna-producto">
-        <div class="card card-producto text-dark shadow-sm h-100" style="width: 18rem;">
+        <div class="card card-producto text-white shadow-sm h-100" style="width: 18rem;">
           <a href="detalle_producto.html?id=deadwing">
             <img src="imagenes/PorcupineTree-Deadwing.jpg" class="card-img-top" alt="Deadwing">
           </a>
@@ -256,7 +281,7 @@
 
       <!-- Porcupine Tree - In Absentia -->
       <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center columna-producto">
-        <div class="card card-producto text-dark shadow-sm h-100" style="width: 18rem;">
+        <div class="card card-producto text-white shadow-sm h-100" style="width: 18rem;">
           <a href="detalle_producto.html?id=in-absentia">
             <img src="imagenes/PorcupineTree-InAbsentia.jpg" class="card-img-top" alt="In Absentia">
           </a>
@@ -277,7 +302,7 @@
 
       <!-- Rammstein - Reise, Reise -->
       <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center columna-producto">
-        <div class="card card-producto text-dark shadow-sm h-100" style="width: 18rem;">
+        <div class="card card-producto text-white shadow-sm h-100" style="width: 18rem;">
           <a href="detalle_producto.html?id=reise-reise">
             <img src="imagenes/Rammstein-ReiseReise.jpg" class="card-img-top" alt="Reise, Reise">
           </a>
@@ -298,7 +323,7 @@
 
       <!-- Red Hot Chili Peppers - Californication -->
       <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center columna-producto">
-        <div class="card card-producto text-dark shadow-sm h-100" style="width: 18rem;">
+        <div class="card card-producto text-white shadow-sm h-100" style="width: 18rem;">
           <a href="detalle_producto.html?id=californication">
             <img src="imagenes/RedHotChiliPeppers-Californication.jpg" class="card-img-top" alt="Californication">
           </a>
@@ -319,7 +344,7 @@
 
       <!-- Stone Temple Pilots - Purple -->
       <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center columna-producto">
-        <div class="card card-producto text-dark shadow-sm h-100" style="width: 18rem;">
+        <div class="card card-producto text-white shadow-sm h-100" style="width: 18rem;">
           <a href="detalle_producto.html?id=purple">
             <img src="imagenes/StoneTemplePilot-Purple.jpg" class="card-img-top" alt="Purple">
           </a>
@@ -340,7 +365,7 @@
 
       <!-- The Cure - Disintegration -->
       <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center columna-producto">
-        <div class="card card-producto text-dark shadow-sm h-100" style="width: 18rem;">
+        <div class="card card-producto text-white shadow-sm h-100" style="width: 18rem;">
           <a href="detalle_producto.html?id=disintegration">
             <img src="imagenes/TheCure-Desintegration.jpg" class="card-img-top" alt="Disintegration">
           </a>
@@ -361,7 +386,7 @@
 
       <!-- The Cure - Wish -->
       <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center columna-producto">
-        <div class="card card-producto text-dark shadow-sm h-100" style="width: 18rem;">
+        <div class="card card-producto text-white shadow-sm h-100" style="width: 18rem;">
           <a href="detalle_producto.html?id=wish">
             <img src="imagenes/TheCure-Wish.jpg" class="card-img-top" alt="Wish">
           </a>
@@ -382,7 +407,7 @@
 
       <!-- Type O Negative - Life Is Killing Me -->
       <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center columna-producto">
-        <div class="card card-producto text-dark shadow-sm h-100" style="width: 18rem;">
+        <div class="card card-producto text-white shadow-sm h-100" style="width: 18rem;">
           <a href="detalle_producto.html?id=life-is-killing-me">
             <img src="imagenes/TypeOfNegative-LikelsKillingMe.jpg" class="card-img-top" alt="Life Is Killing Me">
           </a>
@@ -405,6 +430,7 @@
   </main>
 
   <!-- CARRITO FLOTANTE -->
+  <!-- Estructura del widget flotante de carrito desplegable -->
   <div id="cart-container" class="floating-cart-container">
     <button id="cart-toggle-btn" class="cart-btn" aria-label="Abrir carrito">
       🛒 <span id="cart-counter" class="badge">0</span>
@@ -415,6 +441,7 @@
         <h3>Tu Carrito</h3>
         <button id="cart-close-btn" class="close-btn">&times;</button>
       </div>
+      <!-- Inyección dinámica de los ítems agregados al carrito mediante JS -->
       <div id="cart-body-content" class="cart-body p-3"></div>
       <div class="cart-footer">
         <div class="cart-total">
@@ -426,6 +453,7 @@
     </div>
   </div>
 
+  <!-- Carga de scripts: Bootstrap para interactividad UI y JavaScript local para catálogo y carrito -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="js/productos.js"></script>
   <script src="js/carrito.js"></script>

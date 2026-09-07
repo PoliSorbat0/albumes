@@ -130,26 +130,33 @@ const productos = {
   }
 };
 
+/**
+ * Evento principal al cargar la estructura del DOM.
+ * Lee los parámetros de la URL para identificar el producto y renderizar su vista de detalle.
+ */
 document.addEventListener('DOMContentLoaded', () => {
-  // Obtener el parámetro 'id' de la URL
+  // Captura el valor del parámetro query string '?id=' presente en la URL actual
   const params = new URLSearchParams(window.location.search);
   const idProducto = params.get('id');
 
+  // Búsqueda del objeto del producto dentro del diccionario según la clave obtenida
   const producto = productos[idProducto];
 
   if (producto) {
-    // Inyectar datos en el HTML
+    // Inyección dinámica de textos y metadatos del producto en los nodos HTML correspondientes
     document.getElementById('producto-titulo').textContent = producto.nombre;
     document.getElementById('producto-artista').textContent = producto.artista;
+    // Formateo del precio con separador de miles local de Chile (cl-CL)
     document.getElementById('producto-precio').textContent = `$${producto.precio.toLocaleString('cl-CL')}`;
     document.getElementById('producto-anio').textContent = producto.anio;
     document.getElementById('producto-descripcion').textContent = producto.descripcion;
     
+    // Configuración de los atributos del elemento imagen del álbum
     const imgElement = document.getElementById('producto-imagen');
     imgElement.src = producto.imagen;
     imgElement.alt = `${producto.nombre} - ${producto.artista}`;
 
-    // Configurar el botón de agregar al carrito
+    // Asignación del listener para añadir el producto actual al carrito de compras
     const btnCart = document.getElementById('btn-add-cart');
     if (btnCart) {
       btnCart.onclick = () => {
@@ -158,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
       };
     }
 
-    // Configurar el botón de lista de deseos (opcional)
+    // Asignación del listener para la interacción con la lista de deseos
     const btnWish = document.getElementById('btn-add-wishlist');
     if (btnWish) {
       btnWish.onclick = () => {
@@ -166,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
       };
     }
   } else {
-    // Si no encuentra el ID o no hay parámetro en la URL
+    // Manejo de error cuando no existe el ID o la clave proporcionada no concuerda
     document.getElementById('producto-titulo').textContent = "Producto no encontrado";
     document.getElementById('producto-descripcion').textContent = "Lo sentimos, el producto solicitado no existe en nuestro catálogo.";
     const imgElement = document.getElementById('producto-imagen');

@@ -1,18 +1,24 @@
 <!DOCTYPE html>
+<!-- Declaración del tipo de documento HTML5 -->
 <html lang="es">
 <head>
+  <!-- Codificación de caracteres en UTF-8 para admitir caracteres especiales y tildes -->
   <meta charset="UTF-8">
+  <!-- Configuración responsive para adaptarse a dispositivos móviles y distintas resoluciones -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Detalle del Producto - Tienda Álbumes</title>
   
-  <link rel="stylesheet" href="css/style.css">  
+  <!-- Bootstrap 5 vía CDN, hojas de estilo personalizadas y la librería FontAwesome para íconos -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
+<!-- La clase 'text-white' otorga un color de fuente blanco global al body -->
 <body class="text-white">
 
   <!-- NAVBAR -->
+  <!-- Barra de navegación principal con menú colapsable de Bootstrap -->
   <nav class="navbar navbar-expand-lg navbar-dark navbar-custom shadow-sm">
     <div class="container-fluid">
       <a class="navbar-brand fw-bold" href="index.html">Tienda Álbumes</a>
@@ -25,6 +31,7 @@
           <li class="nav-item"><a class="nav-link" href="Productos.html">Productos</a></li>
           <li class="nav-item"><a class="nav-link" href="carrito.html">Carrito de Compras</a></li> 
         </ul>
+        <!-- Botones de navegación para registro e inicio de sesión -->
         <div class="auth-buttons">
           <a href="registro.html" class="btn btn-primary">Regístrate</a>
           <a href="login.html" class="btn btn-secondary">Iniciar sesión</a>
@@ -35,16 +42,16 @@
 
   <!-- SECCIÓN PRINCIPAL DEL DETALLE -->
   <main class="container my-5">
-    <!-- Contenedor morado oscuro enmarcado -->
+    <!-- Contenedor morado oscuro enmarcado con padding adaptable (p-4 en móvil, p-md-5 en pantallas medianas+) -->
     <div class="card-detalle-producto p-4 p-md-5">
       <div class="row align-items-center g-4">
         
-        <!-- Columna Imagen -->
+        <!-- Columna Imagen: Muestra la portada del álbum dinámicamente inyectada por JS mediante el ID 'producto-imagen' -->
         <div class="col-12 col-md-5 text-center">
           <img id="producto-imagen" src="" alt="Portada del álbum" class="img-fluid rounded shadow-lg" style="max-height: 400px; object-fit: cover;">
         </div>
 
-        <!-- Columna Detalles del Álbum -->
+        <!-- Columna Detalles del Álbum: Los datos (título, artista, precio, año y descripción) se rellenan mediante js/detalle.js -->
         <div class="col-12 col-md-7 text-white">
           <h1 id="producto-titulo" class="display-4 fw-bold mb-1">Cargando...</h1>
           <p id="producto-artista" class="fs-4 text-white-50 mb-3"></p>
@@ -57,7 +64,7 @@
 
           <p id="producto-descripcion" class="lead text-white-50 my-4" style="font-size: 1rem; line-height: 1.6;"></p>
 
-          <!-- Botones -->
+          <!-- Botones de Acción: Escuchados mediante sus IDs ('btn-add-cart' y 'btn-add-wishlist') desde el archivo JS -->
           <div class="d-flex flex-wrap gap-3 mt-4">
             <button id="btn-add-cart" class="btn btn-primary btn-lg px-4 d-flex align-items-center gap-2">
               <i class="fas fa-shopping-cart"></i> Añadir al carrito
@@ -73,6 +80,7 @@
   </main>
 
   <!-- CARRITO FLOTANTE -->
+  <!-- Componente emergente para vista rápida del carrito de compras -->
   <div id="cart-container" class="floating-cart-container">
     <button id="cart-toggle-btn" class="cart-btn" aria-label="Abrir carrito">
       🛒 <span id="cart-counter" class="badge">0</span>
@@ -83,6 +91,7 @@
         <h3>Tu Carrito</h3>
         <button id="cart-close-btn" class="close-btn">&times;</button>
       </div>
+      <!-- Inyección dinámica de productos en el carrito -->
       <div id="cart-body-content" class="cart-body"></div>
       <div class="cart-footer">
         <div class="cart-total">
@@ -94,6 +103,7 @@
     </div>
   </div>
 
+  <!-- Inclusión de Bootstrap Bundle JS y scripts de lógica frontend -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="js/carrito.js"></script>
   <script src="js/detalle.js"></script>

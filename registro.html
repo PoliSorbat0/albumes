@@ -1,27 +1,37 @@
 <!DOCTYPE html>
+<!-- Declaración del tipo de documento HTML5 -->
 <html lang="es">
 <head>
+  <!-- Configuración de la codificación de caracteres a UTF-8 para admitir acentos y símbolos -->
   <meta charset="UTF-8">
+  <!-- Escala inicial y diseño responsivo para dispositivos móviles -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registro - Tienda Álbumes</title>
 
-  <link rel="stylesheet" href="css/style.css">
+  <!-- CDN de Bootstrap 5, hojas de estilo personalizadas y FontAwesome para íconos -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+<!-- La clase 'text-white' aplica color de texto blanco general para todo el cuerpo -->
 <body class="text-white">
+
+  <!-- BARRA SUPERIOR DE ANUNCIOS/OFERTAS (Marquee) -->
   <div class="m-0 rounded-0 text-center alert alert-dismissible fade show pm-marquee-wrap" role="alert">
     <div class="pm-marquee">
+      <!-- Pista que desplaza los mensajes animados vía CSS -->
       <div class="pm-marquee-track">
         <span class="pm-item"><i class="fas fa-credit-card pm-ico"></i>PAGA HASTA 6 CUOTAS SIN INTERÉS!</span>
         <span class="pm-item"><i class="fas fa-gift pm-ico"></i>5% DCTO EXTRA NUEVOS CLIENTES</span>
         <span class="pm-item"><i class="fas fa-truck pm-ico"></i>ENVÍOS A TODO CHILE</span>
       </div>
     </div>
+    <!-- Botón para descartar el anuncio -->
     <button type="button" class="btn-close btn-close-white me-2" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
 
   <!-- NAVEGACIÓN -->
+  <!-- Navbar estándar de la aplicación con estilo oscuro y sombras -->
   <nav class="navbar navbar-expand-lg navbar-dark navbar-custom shadow-sm">
     <div class="container-fluid">
       <a class="navbar-brand fw-bold" href="index.html">Tienda Álbumes</a>
@@ -34,6 +44,7 @@
           <li class="nav-item"><a class="nav-link" href="Productos.html">Productos</a></li>
           <li class="nav-item"><a class="nav-link" href="carrito.html">Carrito de Compras</a></li>
         </ul>
+        <!-- Botones de autenticación en la esquina superior derecha, con 'Regístrate' resaltado como activo -->
         <div class="auth-buttons">
           <a href="registro.html" class="btn btn-primary active">Regístrate</a>
           <a href="login.html" class="btn btn-secondary">Iniciar sesión</a>
@@ -46,11 +57,15 @@
   <main class="container my-5">
     <div class="row justify-content-center">
       <div class="col-md-7">
+        <!-- Tarjeta Bootstrap contenedora con temas oscuros (bg-dark) y bordes contrastados (border-secondary) -->
         <div class="card bg-dark text-white border-secondary shadow-lg">
           <div class="card-body p-4">
             <h2 class="card-title text-center mb-4">Registro de Usuario</h2>
             
+            <!-- Evento 'onsubmit' ligado a la función JS procesarRegistro() -->
             <form id="formRegistro" onsubmit="procesarRegistro(event)">
+              
+              <!-- Primera Fila: RUN y Correo -->
               <div class="row">
                 <div class="col-md-6 mb-3">
                   <label for="regRun" class="form-label">RUN (sin puntos ni guion)</label>
@@ -63,6 +78,7 @@
                 </div>
               </div>
 
+              <!-- Segunda Fila: Nombre y Apellidos -->
               <div class="row">
                 <div class="col-md-6 mb-3">
                   <label for="regNombre" class="form-label">Nombre</label>
@@ -74,13 +90,16 @@
                 </div>
               </div>
 
+              <!-- Tercera Fila: Contraseña -->
               <div class="mb-3">
                 <label for="regPassword" class="form-label">Contraseña</label>
                 <input type="password" class="form-control bg-dark text-white border-secondary" id="regPassword" minlength="4" maxlength="10" required>
               </div>
 
+              <!-- Contenedor dinámico de errores (oculto inicialmente con la clase 'd-none') -->
               <div id="mensajeErrorRegistro" class="alert alert-danger d-none my-3" role="alert"></div>
 
+              <!-- Botón de envío del formulario -->
               <button type="submit" class="btn btn-primary w-100 py-2 mt-2">Registrarse</button>
             </form>
           </div>
@@ -89,6 +108,7 @@
     </div>
   </main>
 
+  <!-- Inclusión de Bootstrap JS Bundle y el script de validaciones personalizadas -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="js/validaciones.js"></script>
 </body>

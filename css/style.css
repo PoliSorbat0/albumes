@@ -299,7 +299,48 @@ body.body-lore {
 }
 
 /* ==========================================
-   6. TARJETA CONTENEDORA PARA DETALLE PRODUCTO
+   7. TARJETA CONTENEDORA DE PRODUCTOS
+   ========================================== */
+/* Tarjeta de producto y sus colores */
+.card-producto {
+    background: linear-gradient(180deg, #2a1836 0%, #24132d 100%);
+    color: #fff7f3;
+    border: 1px solid rgba(212, 167, 98, 0.12); /* borde oro suave */
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(34, 12, 45, 0.6);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    overflow: hidden;
+}
+
+/* Forzar legibilidad de enlaces*/
+.card-producto a, .card-producto a.text-dark { color: inherit !important; text-decoration: none; }
+
+/* Imagen superior con esquinas redondeadas consistentes */
+.card-producto .card-img-top { border-top-left-radius: 12px; border-top-right-radius: 12px; }
+
+/* Hover profesional y moderado */
+.card-producto:hover {
+    transform: translateY(-6px) scale(1.12);
+    box-shadow: 0 22px 50px rgba(34, 12, 45, 0.7);
+}
+
+/* Ajustes del cuerpo de la card */
+.card-producto .card-body { padding: 1rem; }
+
+
+.btn-primary {
+    background-color: #d4a762 !important; /* oro suave */
+    border-color: #d4a762 !important;
+    color: #111111 !important;
+}
+.btn-primary:hover {
+    background-color: #b68543 !important;
+    border-color: #b68543 !important;
+    color: #ffffff !important;
+}
+
+/* ==========================================
+   7. TARJETA CONTENEDORA PARA DETALLE PRODUCTO
    ========================================== */
 .card-detalle-producto {
     background-color: rgba(26, 16, 43, 0.88);

@@ -1,10 +1,18 @@
-// Clave única para localStorage
+// Clave única para la gestión de datos en LocalStorage
 const CLAVE_CARRITO = 'mi_carrito';
 
+/**
+ * Obtiene la lista de productos almacenados en LocalStorage.
+ * @returns {Array} Arreglo con los elementos del carrito.
+ */
 function obtenerCarrito() {
   return JSON.parse(localStorage.getItem(CLAVE_CARRITO)) || [];
 }
 
+/**
+ * Guarda el estado del carrito en LocalStorage y refresca las vistas UI.
+ * @param {Array} carrito - Arreglo actualizado de elementos.
+ */
 function guardarCarrito(carrito) {
   localStorage.setItem(CLAVE_CARRITO, JSON.stringify(carrito));
   actualizarVistaCarrito();
@@ -13,6 +21,12 @@ function guardarCarrito(carrito) {
   }
 }
 
+/**
+ * Añade un producto al carrito o incrementa su cantidad si ya existe.
+ * @param {string} nombre - Nombre descriptivo del producto.
+ * @param {number} precio - Precio unitario del producto.
+ * @param {string} imagen - Ruta relativa de la imagen.
+ */
 function agregarAlCarrito(nombre, precio, imagen = '') {
   let carrito = obtenerCarrito();
   const indice = carrito.findIndex(item => item.nombre === nombre);
@@ -27,12 +41,21 @@ function agregarAlCarrito(nombre, precio, imagen = '') {
   alert(`"${nombre}" se agregó al carrito.`);
 }
 
+/**
+ * Elimina un producto del carrito según su índice.
+ * @param {number} index - Posición del elemento en el arreglo.
+ */
 function eliminarDelCarrito(index) {
   let carrito = obtenerCarrito();
   carrito.splice(index, 1);
   guardarCarrito(carrito);
 }
 
+/**
+ * Incrementa o decrementa la cantidad de un ítem en el carrito.
+ * @param {number} index - Posición del producto.
+ * @param {number} cambio - Valor de cambio (+1 o -1).
+ */
 function cambiarCantidad(index, cambio) {
   let carrito = obtenerCarrito();
   carrito[index].cantidad += cambio;
@@ -44,6 +67,9 @@ function cambiarCantidad(index, cambio) {
   guardarCarrito(carrito);
 }
 
+/**
+ * Limpia totalmente la clave de almacenamiento del carrito previa confirmación.
+ */
 function vaciarCarrito() {
   if (confirm("¿Estás seguro de que deseas vaciar el carrito?")) {
     localStorage.removeItem(CLAVE_CARRITO);
@@ -54,6 +80,9 @@ function vaciarCarrito() {
   }
 }
 
+/**
+ * Simula el proceso de pago y redirecciona a la página de inicio.
+ */
 function finalizarCompra() {
   const carrito = obtenerCarrito();
   if (carrito.length === 0) {
@@ -65,13 +94,16 @@ function finalizarCompra() {
   window.location.href = "index.html";
 }
 
-// Actualizar contador y contenido del desplegable flotante
+/**
+ * Actualiza dinámicamente el badge contador y el menú desplegable flotante.
+ */
 function actualizarVistaCarrito() {
   const carrito = obtenerCarrito();
   const contadorBadge = document.getElementById('cart-counter');
   const contenedorBody = document.getElementById('cart-body-content');
   const totalPrecio = document.getElementById('cart-total-price');
 
+  // Suma total de unidades acumuladas
   const totalItems = carrito.reduce((acc, item) => acc + item.cantidad, 0);
   if (contadorBadge) contadorBadge.textContent = totalItems;
 
@@ -105,7 +137,9 @@ function actualizarVistaCarrito() {
   }
 }
 
-// Renderizar la vista principal en carrito.html
+/**
+ * Renderiza la tabla completa y el resumen de precios en carrito.html
+ */
 function renderizarPaginaCarrito() {
   const contenedor = document.getElementById('tabla-carrito-contenedor');
   const resumenSubtotal = document.getElementById('resumen-subtotal');
@@ -115,6 +149,7 @@ function renderizarPaginaCarrito() {
 
   const carrito = obtenerCarrito();
 
+  // Estado cuando el carrito no posee ítems
   if (carrito.length === 0) {
     contenedor.innerHTML = `
       <div class="text-center py-5">
@@ -129,6 +164,7 @@ function renderizarPaginaCarrito() {
     return;
   }
 
+  // Estructura tabular de productos agregados
   let html = `
     <table class="table table-dark table-hover align-middle mb-0">
       <thead>
@@ -182,13 +218,14 @@ function renderizarPaginaCarrito() {
   if (resumenTotal) resumenTotal.textContent = `$${total.toLocaleString('cl-CL')}`;
 }
 
-// Asignación de evento para abrir/cerrar desplegable
+// Inicialización de escuchadores y carga inicial de interfaz
 document.addEventListener('DOMContentLoaded', () => {
   actualizarVistaCarrito();
   if (document.getElementById('tabla-carrito-contenedor')) {
     renderizarPaginaCarrito();
   }
 
+  // Controladores de apertura y cierre para el carrito flotante desplegable
   const toggleBtn = document.getElementById('cart-toggle-btn') || document.querySelector('.cart-btn');
   const closeBtn = document.getElementById('cart-close-btn');
   const cartPopup = document.getElementById('cart-popup');
