@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <!-- Configuración para que la página sea adaptable (responsive) a dispositivos móviles y pantallas de distintos tamaños -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio - ViniLove</title>
+    <title>Inicio - Vinilover</title>
     
     <!-- Framework Bootstrap 5 CSS para componentes de diseño y grilla -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -45,7 +45,8 @@
     <div class="container-fluid">
       <!-- Nombre/Marca principal de la tienda -->
       <a class="navbar-brand fw-bold" href="index.html">
-        <img src="imagenes/LogoViniLove.png" alt="ViniLove" class="navbar-logo">
+        <img src="imagenes/LogoViniLove.png" alt="Vinilover" class="navbar-logo">
+        <span class="ms-2">Vinilover</span>
       </a>
       <!-- Botón hamburguesa que aparece solo en pantallas pequeñas (móviles) -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -66,14 +67,11 @@
             <a class="nav-link" href="carrito.html">Carrito de Compras</a>
           </li> 
           <!-- Menú desplegable para opciones sobre la empresa -->
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAbout" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              ¡Sobre Nosotros!
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdownAbout">
-              <li><a class="dropdown-item" href="Lore.html">Nuestra Historia</a></li>
-              <li><a class="dropdown-item" href="contacto.html">Contáctanos</a></li>
-            </ul>
+          <li class="nav-item">
+            <a class="nav-link" href="Lore.html">Blog</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contacto.html">Contáctanos</a>
           </li>
         </ul>
         
@@ -180,6 +178,7 @@
 
   <!-- Carga de la librería JS de Bootstrap para el funcionamiento del carrusel y desplegables -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/validaciones.js"></script>
   <!-- Scripts personalizados JS de productos y carrito -->
   <script src="js/productos.js"></script>
   <script src="js/carrito.js"></script>

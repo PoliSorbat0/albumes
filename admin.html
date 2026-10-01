@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel Admin - Vinilover</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body class="text-white">
+  <div class="m-0 rounded-0 text-center alert alert-dismissible fade show pm-marquee-wrap" role="alert">
+    <div class="pm-marquee">
+      <div class="pm-marquee-track">
+        <span class="pm-item"><i class="fas fa-credit-card pm-ico"></i>PAGA HASTA 6 CUOTAS SIN INTERÉS!</span>
+        <span class="pm-item"><i class="fas fa-gift pm-ico"></i>5% DCTO EXTRA NUEVOS CLIENTES</span>
+        <span class="pm-item"><i class="fas fa-truck pm-ico"></i>ENVÍOS A TODO CHILE</span>
+      </div>
+    </div>
+    <button type="button" class="btn-close btn-close-white me-2" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom shadow-sm">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="index.html">
+        <img src="imagenes/LogoViniLove.png" alt="Vinilover" class="navbar-logo" />
+        <span class="ms-2">Vinilover</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="Productos.html">Productos</a></li>
+          <li class="nav-item"><a class="nav-link" href="carrito.html">Carrito de Compras</a></li>
+          <li class="nav-item"><a class="nav-link" href="Lore.html">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacto.html">Contáctanos</a></li>
+        </ul>
+        <div class="auth-buttons"></div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container my-5">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4">
+      <div>
+        <p class="text-primary fw-bold text-uppercase mb-1">Administración</p>
+        <h1 class="h2 mb-0">Panel de control Vinilover</h1>
+      </div>
+      <a href="perfil.html" class="btn btn-outline-light">Volver al perfil</a>
+    </div>
+
+    <div class="row g-4 mb-4">
+      <div class="col-md-4">
+        <div class="admin-stat-card">
+          <span>Total de productos</span>
+          <strong id="totalProductosAdmin">0</strong>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="admin-stat-card">
+          <span>Entradas del blog</span>
+          <strong id="totalBlogAdmin">0</strong>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="admin-stat-card">
+          <span>Solicitudes recibidas</span>
+          <strong id="totalSolicitudesAdmin">0</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <div class="card bg-dark border-secondary shadow-lg profile-panel h-100">
+          <div class="card-body p-4">
+            <p class="text-primary fw-bold mb-1 text-uppercase">Catálogo</p>
+            <h2 class="h4 mb-3">Agregar producto</h2>
+            <form id="formCatalogoAdmin" class="row g-3">
+              <div class="col-12">
+                <label class="form-label text-white-50">Nombre</label>
+                <input type="text" id="productoNombre" class="form-control bg-dark text-white border-secondary" required />
+              </div>
+              <div class="col-12">
+                <label class="form-label text-white-50">Artista</label>
+                <input type="text" id="productoArtista" class="form-control bg-dark text-white border-secondary" required />
+              </div>
+              <div class="col-12">
+                <label class="form-label text-white-50">Precio</label>
+                <input type="number" id="productoPrecio" min="0" step="1" class="form-control bg-dark text-white border-secondary" required />
+              </div>
+              <div class="col-12">
+                <label class="form-label text-white-50">Imagen</label>
+                <input type="text" id="productoImagen" class="form-control bg-dark text-white border-secondary" placeholder="imagenes/ejemplo.jpg" required />
+              </div>
+              <div class="col-12">
+                <label class="form-label text-white-50">Descripción del vinilo</label>
+                <textarea id="productoDescripcion" rows="3" class="form-control bg-dark text-white border-secondary" placeholder="Describe la edición, sonido, material y estilo del vinilo..." required></textarea>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn btn-primary w-100">Guardar producto</button>
+              </div>
+            </form>
+            <hr class="border-secondary my-4" />
+            <h3 class="h5 mb-3">Productos actuales</h3>
+            <div id="listaProductosAdmin" class="admin-list"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="card bg-dark border-secondary shadow-lg profile-panel h-100">
+          <div class="card-body p-4">
+            <p class="text-primary fw-bold mb-1 text-uppercase">Blog</p>
+            <h2 class="h4 mb-3">Crear update</h2>
+            <form id="formBlogAdmin" class="row g-3">
+              <div class="col-12">
+                <label class="form-label text-white-50">Título</label>
+                <input type="text" id="blogTitulo" class="form-control bg-dark text-white border-secondary" required />
+              </div>
+              <div class="col-12">
+                <label class="form-label text-white-50">Categoría</label>
+                <input type="text" id="blogCategoria" class="form-control bg-dark text-white border-secondary" required />
+              </div>
+              <div class="col-12">
+                <label class="form-label text-white-50">Imagen</label>
+                <input type="text" id="blogImagen" class="form-control bg-dark text-white border-secondary" placeholder="imagenes/ejemplo.jpg" required />
+              </div>
+              <div class="col-12">
+                <label class="form-label text-white-50">Descripción</label>
+                <textarea id="blogDescripcion" rows="4" class="form-control bg-dark text-white border-secondary" required></textarea>
+              </div>
+              <div class="col-12">
+                <label class="form-label text-white-50">Botón</label>
+                <input type="text" id="blogBoton" class="form-control bg-dark text-white border-secondary" value="Descubrir ahora" required />
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn btn-primary w-100">Publicar update</button>
+              </div>
+            </form>
+            <hr class="border-secondary my-4" />
+            <h3 class="h5 mb-3">Updates recientes</h3>
+            <div id="listaBlogAdmin" class="admin-list"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="card bg-dark border-secondary shadow-lg profile-panel h-100">
+          <div class="card-body p-4">
+            <p class="text-primary fw-bold mb-1 text-uppercase">Solicitudes</p>
+            <h2 class="h4 mb-3">Todas las solicitudes</h2>
+            <div id="listaSolicitudesAdmin" class="admin-list"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/validaciones.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const usuario = obtenerUsuarioActual();
+      if (!usuario || !esUsuarioAdmin(usuario)) {
+        window.location.href = 'login.html';
+        return;
+      }
+
+      actualizarEstadoAutenticacion();
+      renderCatalogoAdmin();
+      renderBlogAdmin();
+      renderSolicitudesAdmin();
+
+      document.getElementById('formCatalogoAdmin').addEventListener('submit', (event) => {
+        event.preventDefault();
+        const nombre = document.getElementById('productoNombre').value.trim();
+        const artista = document.getElementById('productoArtista').value.trim();
+        const precio = Number(document.getElementById('productoPrecio').value);
+        const imagen = document.getElementById('productoImagen').value.trim();
+        const descripcion = document.getElementById('productoDescripcion').value.trim();
+
+        if (!nombre || !artista || !precio || !imagen || !descripcion) {
+          alert('Completa todos los campos del producto, incluida la descripción del vinilo.');
+          return;
+        }
+
+        const productos = JSON.parse(localStorage.getItem('productos') || '[]');
+        productos.unshift({
+          id: Date.now(),
+          nombre,
+          artista,
+          precio,
+          imagen,
+          descripcion
+        });
+        localStorage.setItem('productos', JSON.stringify(productos));
+        event.target.reset();
+        renderCatalogoAdmin();
+      });
+
+      document.getElementById('formBlogAdmin').addEventListener('submit', (event) => {
+        event.preventDefault();
+        const titulo = document.getElementById('blogTitulo').value.trim();
+        const categoria = document.getElementById('blogCategoria').value.trim();
+        const imagen = document.getElementById('blogImagen').value.trim();
+        const descripcion = document.getElementById('blogDescripcion').value.trim();
+        const boton = document.getElementById('blogBoton').value.trim();
+
+        if (!titulo || !categoria || !imagen || !descripcion) {
+          alert('Completa todos los campos del update.');
+          return;
+        }
+
+        const posts = JSON.parse(localStorage.getItem('viniLoveBlogPosts') || '[]');
+        posts.unshift({
+          titulo,
+          categoria,
+          descripcion,
+          imagen,
+          boton: boton || 'Descubrir ahora'
+        });
+        localStorage.setItem('viniLoveBlogPosts', JSON.stringify(posts));
+        event.target.reset();
+        renderBlogAdmin();
+      });
+    });
+
+    function renderCatalogoAdmin() {
+      const lista = document.getElementById('listaProductosAdmin');
+      const productos = JSON.parse(localStorage.getItem('productos') || '[]');
+      document.getElementById('totalProductosAdmin').textContent = productos.length;
+
+      if (!productos.length) {
+        lista.innerHTML = '<div class="empty-state">No hay productos disponibles.</div>';
+        return;
+      }
+
+      lista.innerHTML = productos.map((producto) => `
+        <div class="admin-item">
+          <div class="d-flex align-items-center gap-3">
+            <img src="${producto.imagen || 'imagenes/LogoViniLove.png'}" alt="${producto.nombre}" class="admin-item-thumb" />
+            <div>
+              <strong>${producto.nombre}</strong>
+              <div class="text-white-50">${producto.artista}</div>
+              <div class="text-white-50 small">${producto.descripcion || 'Sin descripción'}</div>
+              <div class="text-primary fw-bold">$${Number(producto.precio || 0).toLocaleString('cl-CL')}</div>
+            </div>
+          </div>
+          <button class="btn btn-sm btn-outline-danger" data-product-id="${producto.id}">Eliminar</button>
+        </div>
+      `).join('');
+
+      lista.querySelectorAll('[data-product-id]').forEach((boton) => {
+        boton.addEventListener('click', () => {
+          const productosActualizados = JSON.parse(localStorage.getItem('productos') || '[]');
+          const filtrados = productosActualizados.filter((producto) => String(producto.id) !== boton.dataset.productId);
+          localStorage.setItem('productos', JSON.stringify(filtrados));
+          renderCatalogoAdmin();
+        });
+      });
+    }
+
+    function renderBlogAdmin() {
+      const lista = document.getElementById('listaBlogAdmin');
+      const posts = JSON.parse(localStorage.getItem('viniLoveBlogPosts') || '[]');
+      document.getElementById('totalBlogAdmin').textContent = posts.length;
+
+      if (!posts.length) {
+        lista.innerHTML = '<div class="empty-state">No hay updates publicados.</div>';
+        return;
+      }
+
+      lista.innerHTML = posts.map((post, index) => `
+        <div class="admin-item">
+          <div>
+            <strong>${post.titulo}</strong>
+            <div class="text-white-50">${post.categoria}</div>
+          </div>
+          <button class="btn btn-sm btn-outline-danger" data-blog-index="${index}">Eliminar</button>
+        </div>
+      `).join('');
+
+      lista.querySelectorAll('[data-blog-index]').forEach((boton) => {
+        boton.addEventListener('click', () => {
+          const postsActualizados = JSON.parse(localStorage.getItem('viniLoveBlogPosts') || '[]');
+          postsActualizados.splice(Number(boton.dataset.blogIndex), 1);
+          localStorage.setItem('viniLoveBlogPosts', JSON.stringify(postsActualizados));
+          renderBlogAdmin();
+        });
+      });
+    }
+
+    function renderSolicitudesAdmin() {
+      const lista = document.getElementById('listaSolicitudesAdmin');
+      const mensajes = JSON.parse(localStorage.getItem('viniLoveMensajes') || '[]');
+      document.getElementById('totalSolicitudesAdmin').textContent = mensajes.length;
+
+      if (!mensajes.length) {
+        lista.innerHTML = '<div class="empty-state">No hay solicitudes de contacto.</div>';
+        return;
+      }
+
+      lista.innerHTML = mensajes.map((mensaje) => `
+        <div class="admin-item admin-request-item">
+          <div>
+            <strong>${mensaje.nombre || 'Sin nombre'}</strong>
+            <div class="text-white-50">${mensaje.correo || 'Sin correo'}</div>
+            <div class="text-white-50">${mensaje.fecha ? new Date(mensaje.fecha).toLocaleString('es-CL') : 'Sin fecha'}</div>
+            <div class="mt-2 text-light">${mensaje.comentario || 'Sin comentario'}</div>
+          </div>
+        </div>
+      `).join('');
+    }
+  </script>
+</body>
+</html>

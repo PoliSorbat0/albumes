@@ -89,6 +89,20 @@ function finalizarCompra() {
     alert("Tu carrito está vacío.");
     return;
   }
+
+  const usuarioActual = JSON.parse(localStorage.getItem('viniLoveSesion') || 'null');
+  const total = carrito.reduce((acumulado, item) => acumulado + item.precio * item.cantidad, 0);
+  const compra = {
+    fecha: new Date().toLocaleString('es-CL'),
+    cliente: usuarioActual ? usuarioActual.correo : 'Invitado',
+    productos: carrito,
+    total
+  };
+
+  const historialCompras = JSON.parse(localStorage.getItem('viniLoveCompras') || '[]');
+  historialCompras.unshift(compra);
+  localStorage.setItem('viniLoveCompras', JSON.stringify(historialCompras.slice(0, 20)));
+
   alert("¡Gracias por tu compra! Tu pedido ha sido procesado.");
   localStorage.removeItem(CLAVE_CARRITO);
   window.location.href = "index.html";
